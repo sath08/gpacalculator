@@ -1,0 +1,329 @@
+body {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.instructionsBtnContainer {
+    align-items: center;
+    position:relative;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    top: 100px;
+}
+
+.header {
+    background: #006298;
+    height: 80px;
+    position: fixed;
+    top:0;
+    text-align:left;
+    font-size: 20px;
+    color: white;
+    z-index: 1;
+    left: 230px;
+    
+    
+    width:100%;
+    
+}
+
+.header h1 {
+    position: absolute;
+    top:-9px;
+    left: 10px;
+}
+
+
+
+.dropdown {
+    z-index: 2;
+    position: fixed;
+    width: 230px;
+    height: 100vh;
+    top:0;
+    left:0;
+    background-color: #004e78;
+}
+
+.dropbtn {
+    background-color: rgba(111, 176, 216, 0);
+    color: white;
+    font-size: 105px;
+    padding: 0px;
+    border: none;
+    cursor:pointer;
+}
+
+.line {
+    border:1px solid #dceff7;
+
+}
+  
+.menuContent {
+    top:0px;
+    position: absolute;
+    width: 100%;
+}
+.menuContent a {
+    color: white;
+    padding: 10% 5%;
+    font-size: 23px;
+    font-weight: 600;
+    position: relative; 
+    text-decoration: none;
+    display: block;
+}
+
+.user {
+    color: white;
+    
+    font-weight: 600;
+    height: fit-content;
+    top: 0;
+    left:0;
+    position:relative;
+}
+
+.user img {
+    height: 30px;
+    left: 6%;
+    top: -2px;
+    
+    position: absolute;
+}
+
+.user p {
+    position: relative;
+    left: 23%;
+    font-size: 25px;
+}
+  
+.menuContent a:hover {background-color: #111538}
+  
+.show {
+    display: block;
+}
+
+.calcContainer {
+    width: calc(100% - 280px);
+    left: 250px;
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tables {
+    display: flex;
+    position: relative;
+    height: 160px;
+    width: 1550px;
+    top: 140px;
+    /*border: 3px solid black;*/
+}
+
+.subCalc {
+    display: flex;
+    position: absolute;
+    z-index: 0;
+    background: #dceff7;
+    border-radius: 30px;
+    border-style: solid;
+    border: 0px;
+    top: 90px;
+    height: calc(100%);
+    width: 100%;
+    font-size: 30px;
+    font-weight: 800;
+    justify-content: center;
+}
+
+.calculator {
+    background: #dceff7;
+    border-radius: 30px;
+    border-style: solid;
+    visibility: hidden;
+    display: flex;
+    position: absolute;
+    border: 0px;
+    height: 100%;
+    width: 70%;
+    font-size: 30px;
+    font-weight: 800;
+    justify-content: center;
+}
+
+.styleLine1 {
+    position: absolute;
+    width: 94%;
+    top: 60px;
+    border: 1px solid #A2A0A0
+}
+
+.calculator p {
+    position: absolute;
+    top: -16px;
+    font-weight: 500;
+    color: #006298;
+}
+.course {
+    left: 3%;
+}
+
+.grade {
+    left: 59%;
+}
+
+.type {
+    right: 18%;
+}
+
+.semName {
+    top: 40px;
+    left: 3%;
+    height: 50px;
+    width: 25%;
+    color: #4e4e4e;
+    position: absolute;
+    font-family: 'Fira Sans', sans-serif;
+    z-index: 1;
+    font-size: 26px;
+    border: 1px solid #A2A0A0;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.addCourseBtn, .calculateBtn, .addSemBtn {
+    width: 200px;
+    height: 50px;
+    border-radius: 67px;
+    bottom: 10px;
+    position: absolute;
+    border: 0px;
+    font-size: 22px;
+    font-weight:600;
+    color: white;
+    background: #006298;
+}
+
+.addCourseBtn {
+    left: 10%;
+    bottom: 20px;
+}
+.calculateBtn {
+    bottom: 20px;
+    justify-self: center;
+}
+.addSemBtn {
+    left: 7%;
+    bottom: -500px;
+}
+.saveBtn {
+    border: 2px solid #006298;
+    width: 133px;
+    height: 50px;
+    position: absolute;
+    opacity: 0px;
+    background-color:#00497000;
+    bottom: 20px;
+    right: 10%;
+    color: #006298;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.saveBtn:hover {
+    color: #004970;
+    border: 2px solid #004970;
+}
+
+.addCourseBtn:hover, .calculateBtn:hover, .addSemBtn:hover {background: #004970;
+}
+
+.inputContainer {
+    position: relative;
+    box-sizing:border-box;
+    margin-top: 70px;
+    width:100%;
+}
+
+.grades {
+    position: absolute;
+    width: 100px;
+    left: 59%;
+    line-height:50px;
+    
+}
+
+.types {
+    position: absolute;
+    width: 150px;
+    right: 10%;
+    line-height:50px;
+}
+
+.courseNames {
+    position: absolute;
+    left: 3%;
+    width: 50%;
+    line-height:50px;
+}
+
+.grades select, .types select, .courseNames input, .deletes button {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    border: 1px solid #A2A0A0;
+    padding: 2px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.deletes {
+    position: absolute;
+    width: 40px;
+    right: 3%;
+    line-height:50px;
+}
+
+.deletes button {
+    border-radius: 30px;
+    font-size: 20px;
+}
+
+.deletes button:hover {color:red}
+
+.results, .results2 {
+    width: calc(30% - 30px);
+    height: 100px;
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    background: #DCEFF7;
+    position: absolute;
+    left: calc(70% + 30px);
+    display: flex;
+    align-items: center;
+}
+
+.results2 {
+    top: 80%;
+}
+
+.name {
+    position: absolute;
+    left: 20%;
+    bottom: 70%;
+    font-size: 30px;
+    font-weight:600;
+
+}
+
+.weightedGpa, .unweightedGpa {
+    position: absolute;
+    color: #006298;
+    left: 20px;
+}

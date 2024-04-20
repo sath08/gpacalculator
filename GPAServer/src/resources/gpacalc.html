@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator</title>
+    <link rel="stylesheet" href="http://localhost:8082/resources?gpacalc.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">GPA Calculator</h1>
+    </div>
+    
+    <div class="dropdown">
+        <!-- <button class="dropbtn" onclick ="toggleMenu()">∷</button> -->
+        <div class="menuContent" id="menu">
+            <div class="user">
+                <img src="http://localhost:8082/resources?account_image.png" alt="AccountIcon">
+                <p>Sathkrith</p>
+            </div>
+            <div class="line"></div>
+            <a href="#" onclick = "backHome()">Home</a>
+            <a href="#">4 Year Plan</a>
+            <a href="#" onclick="extraHelp()">Resources</a>
+            <a href="#">Extra Curriculars</a>
+        </div> 
+    </div>
+    <div class="calcContainer" id="calcContainer">
+        <div class="tables" id="tables">
+            <div class="calculator" id="calculator">
+                <input class="semName" placeholder="Semester Name"></input>
+                <div class="subCalc">
+                    <p class="course">Course</p>
+                    <p class="type">Type</p>
+                    <p class="grade">Grade</p>
+                    <div class="styleLine1"></div>
+                    <div class="inputContainer">
+                        <div id="courseNames" class="courseNames"></div>
+                        <div id="grades" class="grades"></div>
+                        <div id="types" class="types"></div>
+                        <div id="deletes" class="deletes"></div>  
+                    </div>
+                    <button class="addCourseBtn" onclick="addCourse(0)">Add Course</button>
+                    <button class="saveBtn" onclick="save()">Save</button>
+                </div>
+            </div>
+            <button class="addSemBtn" id="addSemBtn" onclick="addSemester()">Add Semester</button>
+            <div class="gpaContainer">
+                <div class="results" id="results">
+                    <h2 class="weightedGpa" id="weightedGpa">Cumulative Weighted GPA: </h2>
+                    
+                    
+                </div>
+                <div class="results2" id="results2">
+                    <h2 class="unweightedGpa" id="unweightedGpa">Cumulative Unweighted GPA: </h2>
+                </div>
+            </div>
+        </div>        
+    </div>
+    
+    
+    <script src="http://localhost:8082/resources?gpacalc.js"></script>
+</body>
+</html>
