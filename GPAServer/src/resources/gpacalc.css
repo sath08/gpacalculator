@@ -19,7 +19,7 @@ body {
     text-align:left;
     font-size: 20px;
     color: white;
-    z-index: 1;
+    z-index: 2;
     left: 230px;
     
     
@@ -84,7 +84,7 @@ body {
     position:relative;
 }
 
-.user img {
+.user svg {
     height: 30px;
     left: 6%;
     top: -2px;
@@ -297,7 +297,7 @@ body {
 
 .deletes button:hover {color:red}
 
-.results, .results2 {
+.results, .results2, .semesterGrades {
     width: calc(30% - 30px);
     height: 100px;
     border-radius: 25px;
@@ -306,11 +306,24 @@ body {
     position: absolute;
     left: calc(70% + 30px);
     display: flex;
+    color: #006298;
     align-items: center;
 }
 
 .results2 {
     top: 80%;
+}
+
+.semesterGrades {
+    top: 160%;
+    height:max-content;
+    display: block;
+}
+
+.semesterGrades h2 {
+    left: 20px;
+    position: relative;
+    width: 100%;
 }
 
 .name {
@@ -324,6 +337,6 @@ body {
 
 .weightedGpa, .unweightedGpa {
     position: absolute;
-    color: #006298;
     left: 20px;
 }
+
