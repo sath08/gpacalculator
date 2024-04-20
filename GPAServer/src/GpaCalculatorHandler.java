@@ -19,7 +19,7 @@ public class GpaCalculatorHandler implements HttpHandler {
     }
     // handle GET request
     private void handleGetRequest(HttpExchange exchange) throws IOException {
-        byte[] encoded = Files.readAllBytes(Paths.get("C:\\Users\\sathk\\OneDrive\\Desktop\\GPAServer\\src\\resources\\gpacalc.html"));;
+        byte[] encoded = Files.readAllBytes(Paths.get("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\src\\resources\\gpacalc.html"));;
         exchange.sendResponseHeaders(200, encoded.length);
         exchange.getResponseHeaders().set("Content-Type", "text/html");
         OutputStream os = exchange.getResponseBody();
