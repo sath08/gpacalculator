@@ -1,5 +1,8 @@
 import com.sun.net.httpserver.HttpServer;
 
+import handlers.GPAResourcesHandler;
+import handlers.GpaCalculatorHandler;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
