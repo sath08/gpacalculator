@@ -172,23 +172,22 @@ function calculate() {
                     semBlanks++;
                     break;
             }
-            if (grade == "") {
-                break;
-            }
-            switch (type) {
-                // AP level course, adds 1 onto grade score
-                case "AP":
-                    semCourseWeight += 1.0;
-                    break;
-                // Honors level course, adds 0.5 onto grade score
-                case "Honors":
-                    semCourseWeight += 0.5;
-                    break;
-                // Regular level x`course, does not add to grade score, only for non STEM schools
-                case "Regular":
-                    semCourseWeight += 0.0;
-                    break;
-                // Elective course, does not add to grade score, only for STEM school
+            if (grade != "") {
+                switch (type) {
+                    // AP level course, adds 1 onto grade score
+                    case "AP":
+                        semCourseWeight += 1.0;
+                        break;
+                    // Honors level course, adds 0.5 onto grade score
+                    case "Honors":
+                        semCourseWeight += 0.5;
+                        break;
+                    // Regular level x`course, does not add to grade score, only for non STEM schools
+                    case "Regular":
+                        semCourseWeight += 0.0;
+                        break;
+                    // Elective course, does not add to grade score, only for STEM school
+                }
             }
         }
 
@@ -253,8 +252,8 @@ function save() {
     console.log(semInfo[1]);
     const courseData = {
         "identifier" : "123325",
-        "cumulativeWeightedGpa": cumulativeWeightedGpa,
-        "cumulativeUnweightedGpa": cumulativeUnweightedGpa,
+        "cumulative_weighted_gpa": cumulativeWeightedGpa,
+        "cumulative_unweighted_gpa": cumulativeUnweightedGpa,
         "semesters": semInfo,
     };
     const jsonData = JSON.stringify(courseData);
