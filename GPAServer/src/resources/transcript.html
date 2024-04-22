@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPA Calculator</title>
-    <link rel="stylesheet" href="http://localhost:8082/resources?gpacalc.css"> 
+    <title>GPA Calculator: 4 Year Plan</title>
+    <link rel="stylesheet" href="http://localhost:8082/resources?transcript.css"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -14,6 +14,7 @@
         <h1 class="title">GPA Calculator</h1>
     </div>
     
+    
     <div class="dropdown">
         
         <div class="menuContent" id="menu">
@@ -22,26 +23,16 @@
             </div>
             <div class="line"></div>
             <a href="http://localhost:8082/gpacalculator#">Home</a>
-            <a href="http://localhost:8082/transcript">4 Year Plan</a>
+            <a href="#">4 Year Plan</a>
             <a href="#">Resources</a>
             <a href="#">Extra Curriculars</a>
         </div>
     </div>
     <div class="calcContainer" id="calcContainer">
         <div class="tables" id="tables">
-            <h1 class="subtitle">GPA Calculator</h1>
+            <h1 class="subtitle">4 Year Plan</h1>
             <div class="calculator" id="calculator">
-                <select class="semName" onchange="semNameChange()">
-                    <option></option>
-                    <option>Freshman Semester 1</option>
-                    <option>Freshman Semester 2</option>
-                    <option>Sophomore Semester 1</option>
-                    <option>Sophomore Semester 2</option>
-                    <option>Junior Semester 1</option>
-                    <option>Junior Semester 2</option>
-                    <option>Senior Semester 1</option>
-                    <option>Senior Semester 2</option>
-                </select>
+                <h2 class="semName">Freshman Semester 1</h2>
                 <div class="subCalc">
                     <p class="course">Course</p>
                     <p class="type">Type</p>
@@ -51,15 +42,12 @@
                     <div class="inputContainer">
                         <div id="courseNames" class="courseNames"></div>
                         <div id="grades" class="grades"></div>
-                        <div id="types" class="types"></div>
-                        <div id="deletes" class="deletes"></div>  
+                        <div id="types" class="types"></div>  
                     </div>
-                    <button class="addCourseBtn" onclick="addCourse(0)">Add Course</button>
                     
                 </div>
             </div>
-            <button class="saveBtn" onclick="save()">Save To Transcript</button>
-            <button class="addSemBtn" id="addSemBtn" onclick="addSemester()">Add Semester</button>
+            <button class="saveBtn" onclick="save()">Export Transcript</button>
             <div class="gpaContainer">
                 <div class="results" id="results">
                     <h2 class="weightedGpa" id="weightedGpa">Cumulative Weighted GPA: </h2>
@@ -77,6 +65,6 @@
     </div>
     
     
-    <script src="http://localhost:8082/resources?gpacalc.js"></script>
+    <script src="http://localhost:8082/resources?transcript.js"></script>
 </body>
 </html>

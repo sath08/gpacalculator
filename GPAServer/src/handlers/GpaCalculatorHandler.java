@@ -1,7 +1,12 @@
 package handlers;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -46,18 +51,19 @@ public class GpaCalculatorHandler implements HttpHandler {
         StudentRecord studentRecord = gson.fromJson(reqBodyAsString, StudentRecord.class);
         exchange.sendResponseHeaders(200, response.length());
         updateTranscript(studentRecord);
-        writeToFile(studentRecord.toString(), studentRecord.getIdentifier());
+        writeToFile(studentRecord, studentRecord.getIdentifier());
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
     }
     
-    private String writeToFile(String content, String identifier) throws Exception {
-    	Scanner scanner = new Scanner(System.in);
+    private String writeToFile(Serializable content, String identifier) throws Exception {
     	String fileName = "Transcript_" + identifier + ".csv";
-        FileWriter fileWriter = new FileWriter(fileName);
-        fileWriter.write(content);
-        fileWriter.close();
+        FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(content);
+        fileOutputStream.close();
+        objectOutputStream.close();
         return fileName;
     }
     

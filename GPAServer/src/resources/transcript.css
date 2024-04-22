@@ -11,14 +11,6 @@ body {
     top: 100px;
 }
 
-.subtitle {
-    position:absolute;
-    color: #006298;
-    top: -70px;
-    font-size: 50px;
-    left: 20px;
-}
-
 .header {
     background: #006298;
     height: 80px;
@@ -41,7 +33,13 @@ body {
     left: 10px;
 }
 
-
+.subtitle {
+    position:absolute;
+    color: #006298;
+    top: -70px;
+    font-size: 50px;
+    left: 20px;
+}
 
 .dropdown {
     z-index: 2;
@@ -140,7 +138,7 @@ body {
     border-style: solid;
     border: 0px;
     top: 90px;
-    height: calc(100%);
+    height: calc(90%);
     width: 100%;
     font-size: 30px;
     font-weight: 800;
@@ -148,7 +146,6 @@ body {
 }
 
 .calculator {
-    background: #dceff7;
     border-radius: 30px;
     border-style: solid;
     visibility: hidden;
@@ -166,7 +163,7 @@ body {
     position: absolute;
     width: 94%;
     top: 60px;
-    border: 1px solid #006298
+    border: 1px solid #A2A0A0
 }
 
 .calculator p {
@@ -188,16 +185,15 @@ body {
 }
 
 .semName {
-    top: 40px;
-    left: 3%;
+    top: -20px;
+    left: 1%;
     height: 50px;
-    width: 29%;
+    width: 100%;
     color: #006298;
     position: absolute;
     font-family: 'Fira Sans', sans-serif;
     z-index: 1;
-    font-size: 26px;
-    border: 1px solid #006298;
+    font-size: 40px;
     padding: 10px;
     box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0);
@@ -236,8 +232,8 @@ body {
     opacity: 0px;
     background-color:#00497000;
     bottom: 20px;
-    top: -20%;
-    right: 30%;
+    top: 20%;
+    right: 0%;
     color: #006298;
     font-size: 22px;
     font-weight: 600;
@@ -263,7 +259,7 @@ body {
     width: 100px;
     left: 59%;
     line-height:50px;
-    
+    top: 13px;
 }
 
 .types {
@@ -271,6 +267,7 @@ body {
     width: 150px;
     right: 10%;
     line-height:50px;
+    top: 13px;
 }
 
 .courseNames {
@@ -278,45 +275,33 @@ body {
     left: 3%;
     width: 50%;
     line-height:50px;
-    
-}
-
-.courseNames input::placeholder {
-    color: #006298;
+    top: 13px;
 }
 
 
-.grades select, .types select, .courseNames input, .deletes button {
+.grades p, .types p, .courseNames p {
     position: relative;
+    font-weight: 400;
     width: 100%;
     height: 40px;
-    font-size: 20px;
-    color: #006298;
-    
-    border: 1px solid #006298;
+    font-size: 30px;
+    border: 1px solid #A2A0A0;
     padding: 2px;
+    padding-left: 10px;
     box-sizing: border-box;
-    vertical-align: middle;
+    
     background-color: rgba(255, 255, 255, 0);
+    margin: 10px;
+    line-height: 39px;
+    text-align: center;
+    margin-left:0;
+    padding: 0px;
 }
 
-.courseNames input {
+.courseNames p {
+    text-align: left;
     padding-left: 10px;
 }
-
-.deletes {
-    position: absolute;
-    width: 40px;
-    right: 3%;
-    line-height:50px;
-}
-
-.deletes button {
-    border-radius: 30px;
-    font-size: 20px;
-}
-
-.deletes button:hover {color:red}
 
 .results, .results2, .semesterGrades {
     width: calc(30% - 30px);
@@ -329,15 +314,15 @@ body {
     display: flex;
     color: #006298;
     align-items: center;
-    top: 20%;
+    top: 75%;
 }
 
 .results2 {
-    top: 100%;
+    top: 155%;
 }
 
 .semesterGrades {
-    top: 180%;
+    top: 235%;
     height:max-content;
     display: block;
 }
@@ -362,6 +347,3 @@ body {
     left: 20px;
 }
 
-.semesterGrades pre {
-    font-family: 'Fira Sans', sans-serif;
-}
