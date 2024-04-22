@@ -28,6 +28,9 @@ public class TranscriptHandler implements HttpHandler {
         // Retrieve identifier from URL
 
 		String identifier = exchange.getRequestURI().getQuery();
+		if (identifier == null) {
+			identifier = "123325";
+		}
         // Find CSV file for identifier, read file content, and covert to java object
 		StudentRecord studentRecord = readFile("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\Transcript_" + identifier + ".csv");
         // Convert java object to json string

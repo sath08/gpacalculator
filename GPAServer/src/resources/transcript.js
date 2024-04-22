@@ -19,6 +19,32 @@ numOfCoursesPerSem = [];
 
 addSemester();
 
+document.addEventListener('DOMContentLoaded', function() {
+    const apiUrl = 'http://localhost:8082/transcript';
+    fetch(apiUrl)
+        .then(response => {
+            // Check if response is successful
+            if (!response.ok) {
+                throw new Error(`API request failed: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+			//TODO Yohaan change this to matc
+            // Inject data into HTML
+            document.getElementById('content').innerHTML = `
+                <h1>${data.title}</h1>
+                <p>${data.message}</p>
+                <ul>
+                    ${data.items.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            `;
+        })
+        .catch(error => {
+            console.error('Error fetching data from API:', error);
+        });
+});
+
 function addCourse(semNum) {
     let border = document.getElementById("calculator" + semNum);
     semInfo[semNum-1].push([0, 0, 0])
@@ -83,6 +109,7 @@ function addCourse(semNum) {
     border.querySelector(".deletes").appendChild(delBtn);
     document.getElementById("addSemBtn").style.top = `${semHeights[semCount] + borderHeights[semCount] + 115}px`;
 }
+
 
 function remove(semNum, index) {
     
