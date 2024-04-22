@@ -8,7 +8,7 @@ let semUWGrades = []
 let semWGrades = []
 let semNames = [];
 let semTextCount = 0;
-let semInfo = [[]]; // SEMESTERS -> COURSES -> [COURSE, GRADE, TYPE]
+let semInfo = []; // SEMESTERS -> COURSES -> [COURSE, GRADE, TYPE]
 
 let cumulativeWeightedGpa = 0;
 let cumulativeUnweightedGpa = 0;
@@ -38,6 +38,7 @@ function addCourse(semNum) {
 
     courseBox.id = "course" + curSem + index;
     courseBox.placeholder = "Enter Course Name...";
+    courseBox.onchange = function() {calculate()};
     border.querySelector(".courseNames").appendChild(courseBox);
 
 
@@ -104,9 +105,8 @@ function remove(semNum, index) {
     numOfCourses--;
     semNum = Number(semNum);
     let border = document.getElementById("calculator" + (semNum + 1));
-    console.log(borderHeights);
+    
     borderHeights[semNum + 1] -= lineHeight;
-    console.log(borderHeights);
     border.style.height = `${borderHeights[semNum + 1]}px`;
     document.getElementById("addSemBtn").style.top = `${semHeights[semCount] + borderHeights[semCount] + 115}px`;
 
@@ -131,10 +131,10 @@ function calculate() {
             grade = document.getElementById("grade" + i + j).value;
             type = document.getElementById("type" + i + j).value;
             courseName = document.getElementById("course" + i + j).value;
-
-            semInfo[i][j][0] = courseName;
-            semInfo[i][j][1] = grade;
-            semInfo[i][j][2] = type;
+            console.log(courseName);
+            semInfo[i][j + 3][0] = courseName;
+            semInfo[i][j + 3][1] = grade;
+            semInfo[i][j + 3][2] = type;
             
 
             switch (grade) {
@@ -205,6 +205,8 @@ function calculate() {
             semUWGrades[i] = "0.00";
             semWGrades[i] = "0.00";
         }
+        semInfo[i][1] = semUWGrades[i];
+        semInfo[i][2] = semWGrades[i];
     }
     
     let unweightedGpa = (totalGradePoint / (numOfCourses - numBlanks)).toFixed(2);
@@ -246,13 +248,17 @@ function calculate() {
 }
 
 function save() {
+    console.log(semInfo);
+    console.log(semInfo[0]);
+    console.log(semInfo[1]);
     const courseData = {
-        "cumulative_weighted_gpa": cumulativeWeightedGpa,
-        "cumulative_unweighted_gpa": cumulativeUnweightedGpa,
-        "semesterInfo": semInfo,
-        "semesterNames": semNames,
+        "identifier" : "123325",
+        "cumulativeWeightedGpa": cumulativeWeightedGpa,
+        "cumulativeUnweightedGpa": cumulativeUnweightedGpa,
+        "semesters": semInfo,
     };
     const jsonData = JSON.stringify(courseData);
+    console.log(jsonData);
     fetch('http://localhost:8082/gpacalculator', {
         method: 'POST',
         headers: {
@@ -273,12 +279,17 @@ function save() {
 
 function addSemester() {
     semCount++;
+    semInfo.push([]);
     numOfCoursesPerSem.push(0);
     semUWGrades.push(0.0);
     semWGrades.push(0.0);
     semNames.push("");
-
-    semInfo.push([]);
+    semInfo[semCount-1].unshift(0.0);
+    semInfo[semCount-1].unshift(0.0);
+    semInfo[semCount-1].unshift("");
+    console.log(semInfo);
+    console.log(semInfo[0]);
+    
     let template = document.getElementById("calculator");
 
     // Clone the template
@@ -311,8 +322,10 @@ function semNameChange() {
             let semGpa = document.getElementById("semester" + (i));
             semGpa.textContent = semNames[i] + " | UW: " + semUWGrades[i] + " W: " + semWGrades[i];
         }
+        semInfo[i][0] = semNames[i];
     }
     console.log(semNames);
+    
 }
 
 function gradeChanged(select) {

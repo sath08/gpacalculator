@@ -6,7 +6,7 @@ class Semester {
     private String name;
     private double unweightedGPA;
     private double weightedGPA;
-    private List<Course> courses;
+    private String[] courses;
 
     // Getters and Setters
     public String getName() {
@@ -33,11 +33,11 @@ class Semester {
         this.weightedGPA = weightedGPA;
     }
 
-    public List<Course> getCourses() {
+    public String[] getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(String[] courses) {
         this.courses = courses;
     }
 }
