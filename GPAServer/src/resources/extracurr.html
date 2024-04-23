@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPA Calculator: 4 Year Plan</title>
-    <link rel="stylesheet" href="http://localhost:8082/resources?transcript.css"> 
+    <title>GPA Calculator: ExtracurricularsPage</title>
+    <link rel="stylesheet" href="http://localhost:8082/resources?extracurr.css"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -25,46 +25,40 @@
             <a href="http://localhost:8082/gpacalculator#">Home</a>
             <a href="http://localhost:8082/resources?transcript.html">4 Year Plan</a>
             <a href="http://localhost:8082/resources?gparesources.html">Resources</a>
-            <a href="http://localhost:8082/resources?extracurr.html">Extra Curriculars</a>
-        </div>
+            <a href="http://localhost:8082/resources?extracurr.html">Extra Curriculars</a>        </div>
     </div>
     <div class="calcContainer" id="calcContainer">
         <div class="tables" id="tables">
-            <h1 class="subtitle">4 Year Plan</h1>
+            <h1 class="subtitle">Extracurriculars</h1>
             <div class="calculator" id="calculator">
                 <h2 class="semName">Freshman Semester 1</h2>
                 <div class="subCalc">
                     <p class="course">Course</p>
-                    <p class="type">Type</p>
-                    <p class="grade">Grade</p>
-                    
+                    <p class="curState">Current State</p>
+                    <p class="goalState">Goal State</p>
+                    <p class="progress">Progress</p>
+
                     <div class="styleLine1"></div>
                     <div class="inputContainer">
                         <div id="courseNames" class="courseNames"></div>
-                        <div id="grades" class="grades"></div>
-                        <div id="types" class="types"></div>  
+                        <div id="curStates" class="curStates"></div>
+                        <div id="goalStates" class="goalStates"></div>  
+                        <div id="progresses" class="progresses"></div>  
                     </div>
-                    
+                    <button class="addCourseBtn" onclick="addCourse(0)">Add Row</button>
                 </div>
             </div>
-            <a href = "http://localhost:8082/transcript?csv" class="saveBtn">Export Transcript</a>
+            <button class="saveBtn" onclick="save()">Export Extracurriculars</button>
             <div class="gpaContainer">
-                <div class="results" id="results">
-                    <h2 class="weightedGpa" id="weightedGpa">Cumulative Weighted GPA: </h2>
-                    
+                <div class="groups" id="groups">
                     
                 </div>
-                <div class="results2" id="results2">
-                    <h2 class="unweightedGpa" id="unweightedGpa">Cumulative Unweighted GPA: </h2>
-                </div>
-
-                <div class="semesterGrades" id="semesterGrades">
-                </div>
+                <div class="statuses" id="statuses"></div>
             </div>
         </div>        
     </div>
     
     
-    <script src="http://localhost:8082/resources?transcript.js"></script>
+    <script src="http://localhost:8082/resources?extracurr.js"></script>
 </body>
 </html>

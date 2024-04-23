@@ -1,5 +1,3 @@
-let data = []
-
 let numOfCourses = 0;
 
 let borderHeights = [0]
@@ -8,7 +6,7 @@ let semCount = 0;
 let semHeights = [-20]
 let semUWGrades = []
 let semWGrades = []
-let semNames = ["Freshman Sem 1", "Freshman Sem 2", "Sophomore Sem 1", "Sophomore Sem 2", "Junior Sem 1", "Junior Sem 2", "Senior Sem 1", "Senior Sem 2"];
+let semNames = ["Freshman Semester 1", "Freshman Semester 2", "Sophomore Semester 1", "Sophomore Semester 2", "Junior Semester 1", "Junior Semester 2", "Senior Semester 1", "Senior Semester 2"];
 let semTextCount = 0;
 let semInfo = []; // SEMESTERS -> COURSES -> [COURSE, GRADE, TYPE]
 
@@ -24,7 +22,7 @@ for (var i = 0; i < 8; i++) {
     }
     document.getElementById("calculator" + (i + 1)).querySelector(".semName").textContent = semNames[i];
 }
-calculate();
+
 function addCourse(semNum) {
     let border = document.getElementById("calculator" + semNum);
     semInfo[semNum-1].push([0, 0, 0])
@@ -77,7 +75,6 @@ function calculate() {
             semInfo[i][j + 3][0] = courseName;
             semInfo[i][j + 3][1] = grade;
             semInfo[i][j + 3][2] = type;
-            console.log(grade);
             switch (grade) {
                 case "A":
                 semGradePoint += 4.0;
@@ -285,14 +282,15 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
 			console.log(data.semesters)
-			for (let i = 0; i < numOfCoursesPerSem.length; i++) {
-				for (let j = 0; j < numOfCoursesPerSem[i]; j++) {
-					document.getElementById("course" + i + j).textContent = data.semesters[i][j+3][0];
-					document.getElementById("grade" + i + j).textContent = data.semesters[i][j+3][1];
-					document.getElementById("type" + i + j).textContent = data.semesters[i][j+3][2];
-				}
-			}
-			calculate();
+            for (let i = 0; i < data.semesters.length; i++) {
+                for (let j = 0; j < data.semesters[i].length - 3; j++) {
+                    let sem = semNames.indexOf(data.semesters[i][0]);       
+                    document.getElementById("course" + sem + j).textContent = data.semesters[i][j+3][0];
+                    document.getElementById("grade" + sem + j).textContent = data.semesters[i][j+3][1];
+                    document.getElementById("type" + sem + j).textContent = data.semesters[i][j+3][2];
+                }
+            }
+            calculate();
         })
         .catch(error => {
             console.error('Error fetching data from API:', error);

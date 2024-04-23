@@ -149,7 +149,6 @@ body {
 }
 
 .calculator {
-    background: #dceff7;
     border-radius: 30px;
     border-style: solid;
     visibility: hidden;
@@ -186,29 +185,17 @@ body {
     font-weight: 500;
     color: #006298;
 }
-.course {
-    left: 3%;
-}
-
-.grade {
-    left: 59%;
-}
-
-.type {
-    right: 18%;
-}
 
 .semName {
-    top: 40px;
-    left: 3%;
+    top: -20px;
+    left: 1%;
     height: 50px;
-    width: 29%;
+    width: 100%;
     color: #006298;
     position: absolute;
     font-family: 'Fira Sans', sans-serif;
     z-index: 1;
-    font-size: 26px;
-    border: 1px solid #006298;
+    font-size: 40px;
     padding: 10px;
     box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0);
@@ -252,7 +239,7 @@ body {
 
 .saveBtn {
     border: 2px solid #006298;
-    width: 250px;
+    width: 280px;
     height: 50px;
     position: absolute;
     opacity: 0px;
@@ -280,35 +267,53 @@ body {
     width:100%;
 }
 
-.grades {
+.curStates {
     position: absolute;
-    width: 100px;
-    left: 59%;
+    width: 22%;
+    left: 28%;
     line-height:50px;
     
 }
 
-.types {
+.goalStates {
     position: absolute;
-    width: 150px;
-    right: 10%;
+
+    left: 51%;
+    width: 22%;
     line-height:50px;
 }
 
 .courseNames {
     position: absolute;
     left: 3%;
-    width: 50%;
+    width: 24%;
     line-height:50px;
-    
 }
 
-.courseNames input::placeholder {
-    color: #006298;
+.progresses {
+    position: absolute;
+    left: 74%;
+    width: 22%;
+    line-height: 50px;
 }
 
+.course {
+    left: 3%;
+}
 
-.grades select, .types select, .courseNames input, .deletes button {
+.goalState {
+    left: 51%;
+}
+
+.curState {
+    left: 28%;
+}
+
+.progress {
+    left: 74%;
+}
+
+.goalStates input, .curStates input, .courseNames input, .progresses select {
     position: relative;
     width: 100%;
     height: 40px;
@@ -326,49 +331,45 @@ body {
     padding-left: 10px;
 }
 
-.deletes {
-    position: absolute;
-    width: 40px;
-    right: 3%;
-    line-height:50px;
-}
-
-.deletes button {
-    border-radius: 30px;
-    font-size: 20px;
-}
-
 .deletes button:hover {color:red}
 
-.results, .results2, .semesterGrades {
+.gpaContainer {
     width: calc(30% - 30px);
-    height: 100px;
     border-radius: 25px;
     box-shadow: 0px 4px 4px 0px #00000040;
     background: #DCEFF7;
     position: absolute;
     left: calc(70% + 30px);
-    display: flex;
     color: #006298;
     align-items: center;
-    top: 20%;
-}
-
-.results2 {
     top: 100%;
-}
-
-.semesterGrades {
-    top: 180%;
     height:max-content;
     display: block;
 }
 
-.semesterGrades h2 {
+.statuses {
+    width: 40%;
+    right: 20px;
+    top: 0;
+    position: absolute; 
+    height: max-content;
+    
+    display: block;
+}
+
+.statuses h2 {
+    position: relative;
+    text-align: right;
+}
+
+
+.groups h2 {
     left: 20px;
     position: relative;
     width: 100%;
 }
+
+
 
 .name {
     position: absolute;
@@ -384,38 +385,6 @@ body {
     left: 20px;
 }
 
-.semesterGrades pre {
+.groups pre, .statuses pre {
     font-family: 'Fira Sans', sans-serif;
-}
-
-.popUp {
-    position: absolute;
-    top: 50px;
-    z-index: 5;
-    border-radius: 5px;
-    border: 5px solid #003b5b;
-    right: 50px;
-    width: 300px;
-    height: 100px;
-    background-color: #DCEFF7;
-    animation: fade 10s ease-in-out;
-    opacity: 0%;
-    display: flex;
-}
-
-.message {
-    top: -10px;
-    position: absolute;
-    color: #003b5b;
-    text-align: center;
-}
-
-
-@keyframes fade {
-    0% {
-        opacity: 100%;
-    }
-    100% {
-        opacity: 0%;
-    }
 }

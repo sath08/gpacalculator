@@ -12,6 +12,9 @@ let semInfo = []; // SEMESTERS -> COURSES -> [COURSE, GRADE, TYPE]
 
 let curNumBlanks = 0;
 
+
+document.getElementById("popUp").classList.remove("popUp");
+
 let cumulativeWeightedGpa = 0;
 let cumulativeUnweightedGpa = 0;
 
@@ -20,6 +23,7 @@ numOfCoursesPerSem = [];
 addSemester();
 
 function addCourse(semNum) {
+    
     let border = document.getElementById("calculator" + semNum);
     semInfo[semNum-1].push([0, 0, 0])
 
@@ -41,6 +45,7 @@ function addCourse(semNum) {
     courseBox.id = "course" + curSem + index;
     courseBox.placeholder = "Enter Course Name...";
     courseBox.onchange = function() {calculate()};
+    courseBox.maxLength = "30";
     border.querySelector(".courseNames").appendChild(courseBox);
 
 
@@ -255,23 +260,38 @@ function calculate() {
 
 function save() {
     calculate();
-        
+    let error = "";
     let good = true;
     for (let i = 0; i < semInfo.length; i++) {
         if (semInfo[i].length != 10) {
             good = false;
-            console.log("Not Correct Length");
+            error = ("Does not meet course criteria (7 courses)");
         }
     }
 
     if (semInfo.length > 8) {
         good = false;
+        error = ("Too Many Semesters");
     }
 
     if (curNumBlanks != 0) {
         good = false;
+        error = ("Some Information Has Been Left Blank")
     }
-
+	
+	for (let i = 0; i < semInfo.length; i++) {
+        for (let j = 0; j < semInfo.length; j++) {
+            if (semInfo[i][0] == semInfo[j][0] && i != j) {
+                good = false;
+                error = "Duplicate Semesters";
+            }
+        }
+        if (semInfo[i][0] == "Choose Semester" || semInfo[i][0] == "") {
+            error = "No Semester Selected";
+            good = false;
+        }
+    }
+    
     if (good) {
         const courseData = {
             "identifier" : "123325",
@@ -298,7 +318,23 @@ function save() {
             // Optionally, handle errors here
           });
     } else {
-        console.log("DID NOT SAVE: DOES NOT MEET REQUIREMENTS")
+        
+        let popUp = document.getElementById("popUp")
+        let message = popUp.querySelector(".message");
+
+        message.textContent = "Did Not Save: " + error;
+
+        popUp.appendChild(message);
+        popUp.style.opacity = 100;
+
+        popUp.classList.remove("popUp");
+
+        // Force a reflow
+        void popUp.offsetWidth;
+
+        // Reapply the class to restart the animation
+        popUp.classList.add("popUp");
+        popUp.style.opacity = 0;
     }
     
 }
@@ -332,7 +368,16 @@ function addSemester() {
     semHeights.push(semHeights[semCount-1] + borderHeights[semCount-1] + 130);
     clone.style.top = `${semHeights[semCount]}px`;
 
-    document.getElementById("addSemBtn").style.top = `${semHeights[semCount] + borderHeights[semCount] + 115}px`;
+    let addSemBtn = document.getElementById("addSemBtn");
+    addSemBtn.style.top = `${semHeights[semCount] + borderHeights[semCount] + 115}px`;
+    // Remove the class to stop the animation
+    addSemBtn.classList.remove("addSemBtn");
+
+    // Force a reflow
+    void addSemBtn.offsetWidth;
+
+    // Reapply the class to restart the animation
+    addSemBtn.classList.add("addSemBtn");
     
     // Append the cloned element to the container
     document.getElementById("tables").appendChild(clone);
@@ -342,6 +387,7 @@ function addSemester() {
 }
 
 function semNameChange() {
+    
     for (let i = 0; i < semUWGrades.length; i++) {
         semNames[i] = document.getElementById("calculator" + (i+1)).querySelector(".semName").value;
         if (semNames[i] != "" && i < semTextCount) {
