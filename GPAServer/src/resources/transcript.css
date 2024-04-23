@@ -237,6 +237,9 @@ body {
     color: #006298;
     font-size: 22px;
     font-weight: 600;
+    line-height: 49px;
+    text-align: center;
+    text-decoration: none;
 }
 
 .saveBtn:hover {
@@ -347,3 +350,6 @@ body {
     left: 20px;
 }
 
+.semesterGrades pre {
+	font-family: 'Fira Sans', sans-serif;
+}

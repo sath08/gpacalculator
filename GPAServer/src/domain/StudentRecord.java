@@ -13,7 +13,7 @@ public class StudentRecord implements Serializable{
 	private Double cumulativeWeightedGpa;
 	private Double cumulativeUnweightedGpa;
     private List<Object[]> semesters; 
-	private transient HashMap<String, Object[]> semesterInfo;
+	private HashMap<String, Object[]> semesterInfo;
 	
 	public StudentRecord() {
 		semesterInfo = new HashMap<String, Object[]>();

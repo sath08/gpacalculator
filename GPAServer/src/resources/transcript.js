@@ -1,50 +1,30 @@
+let data = []
+
 let numOfCourses = 0;
 
 let borderHeights = [0]
 let lineHeight = 50;
 let semCount = 0;
-let semHeights = [-100]
+let semHeights = [-20]
 let semUWGrades = []
 let semWGrades = []
-let semNames = [];
+let semNames = ["Freshman Sem 1", "Freshman Sem 2", "Sophomore Sem 1", "Sophomore Sem 2", "Junior Sem 1", "Junior Sem 2", "Senior Sem 1", "Senior Sem 2"];
 let semTextCount = 0;
 let semInfo = []; // SEMESTERS -> COURSES -> [COURSE, GRADE, TYPE]
-
-let curNumBlanks = 0;
 
 let cumulativeWeightedGpa = 0;
 let cumulativeUnweightedGpa = 0;
 
-numOfCoursesPerSem = [];
+let numOfCoursesPerSem = [];
 
-addSemester();
-
-document.addEventListener('DOMContentLoaded', function() {
-    const apiUrl = 'http://localhost:8082/transcript';
-    fetch(apiUrl)
-        .then(response => {
-            // Check if response is successful
-            if (!response.ok) {
-                throw new Error(`API request failed: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-			//TODO Yohaan change this to matc
-            // Inject data into HTML
-            document.getElementById('content').innerHTML = `
-                <h1>${data.title}</h1>
-                <p>${data.message}</p>
-                <ul>
-                    ${data.items.map(item => `<li>${item}</li>`).join('')}
-                </ul>
-            `;
-        })
-        .catch(error => {
-            console.error('Error fetching data from API:', error);
-        });
-});
-
+for (var i = 0; i < 8; i++) {
+    addSemester();
+    for (var j = 0; j < 7; j++) {   
+        addCourse(i+1);
+    }
+    document.getElementById("calculator" + (i + 1)).querySelector(".semName").textContent = semNames[i];
+}
+calculate();
 function addCourse(semNum) {
     let border = document.getElementById("calculator" + semNum);
     semInfo[semNum-1].push([0, 0, 0])
@@ -59,118 +39,45 @@ function addCourse(semNum) {
     border.style.height = `${borderHeights[semNum]}px`;
     numOfCourses++;
     numOfCoursesPerSem[semNum-1]++;
-    let courseBox = document.createElement("input");
+    let courseBox = document.createElement("p");
 
     let curSem = (semNum-1).toString();
     let index = (numOfCoursesPerSem[semNum-1] - 1).toString();
 
     courseBox.id = "course" + curSem + index;
-    courseBox.placeholder = "Enter Course Name...";
-    courseBox.onchange = function() {calculate()};
+    courseBox.textContent = "";
     border.querySelector(".courseNames").appendChild(courseBox);
 
 
-    let gradeDrop = document.createElement("select");
+    let gradeDrop = document.createElement("p");
     gradeDrop.id = "grade" + curSem + index;
-
-    let grades = ["A", "B+", "B", "B-", "C+", "C", "C-", "N"];
-    let option = document.createElement("option");
-    option.value = "";
-    gradeDrop.add(option);
-    grades.forEach(grade=> {
-        let option = document.createElement("option");
-        option.text = grade;
-        gradeDrop.add(option);
-    });
-    let temp = gradeDrop;
-    gradeDrop.onchange = function() {gradeChanged(temp)};
+    gradeDrop.textContent = "";
     border.querySelector(".grades").appendChild(gradeDrop);
 
 
-    let typeDrop = document.createElement("select");
+    let typeDrop = document.createElement("p");
     typeDrop.id = "type" + curSem + index;
-
-    let types = ["Regular", "Honors", "AP"];
-    types.forEach(type=> {
-        let option = document.createElement("option");
-        option.text = type;
-        typeDrop.add(option);
-    });
-    typeDrop.onchange = function() {gradeChanged(temp)};
+    typeDrop.textContent = "";
     border.querySelector(".types").appendChild(typeDrop);
-
-
-    let delBtn = document.createElement("button");
-    delBtn.textContent = "X";
-    
-    delBtn.id = "delete" + curSem + index;
-    
-    delBtn.onclick = function() {remove(curSem, index)};
-    border.querySelector(".deletes").appendChild(delBtn);
-    document.getElementById("addSemBtn").style.top = `${semHeights[semCount] + borderHeights[semCount] + 115}px`;
-}
-
-
-function remove(semNum, index) {
-    
-    document.getElementById("grade" + semNum + index).remove();
-    document.getElementById("course" + semNum + index).remove();
-    document.getElementById("type" + semNum + index).remove();
-    document.getElementById("delete" + semNum + index).remove();
-    semInfo[semNum].splice(Number(index)+3, 1)
-
-    while (index < numOfCoursesPerSem[semNum] - 1) {
-        index++;
-        let i = index-1;
-        let curSem = semNum;
-        let x = document.getElementById("delete" + curSem + index);
-        document.getElementById("grade" + curSem + index).id = "grade" + curSem + i;
-        document.getElementById("course" + curSem + index).id = "course" + curSem + i;
-        document.getElementById("type" + curSem + index).id = "type" + curSem + i;
-        x.id = "delete" + curSem + i;
-        x.onclick = function() {remove(curSem, i)};
-    }
-    numOfCoursesPerSem[semNum]--;
-
-    numOfCourses--;
-    semNum = Number(semNum);
-    let border = document.getElementById("calculator" + (semNum + 1));
-    
-    borderHeights[semNum + 1] -= lineHeight;
-    border.style.height = `${borderHeights[semNum + 1]}px`;
-    document.getElementById("addSemBtn").style.top = `${semHeights[semCount] + borderHeights[semCount] + 115}px`;
-
-    for (var i = semNum + 2; i <= semCount; i++) {
-        let curBorder = document.getElementById("calculator" + i);
-        semHeights[i] -= lineHeight;
-        curBorder.style.top = `${semHeights[i]}px`;
-    }
-
-    calculate();
 }
 
 function calculate() {
     let totalGradePoint = 0;
     let totalCourseWeight = 0;
     let numBlanks = 0;
-    curNumBlanks = 0;
     for (let i = 0; i < numOfCoursesPerSem.length; i++) {
         let semGradePoint = 0;
         let semCourseWeight = 0;
         let semBlanks = 0;
         for (let j = 0; j < numOfCoursesPerSem[i]; j++) {
-            grade = document.getElementById("grade" + i + j).value;
-            type = document.getElementById("type" + i + j).value;
-            courseName = document.getElementById("course" + i + j).value;
+            grade = document.getElementById("grade" + i + j).textContent;
+            type = document.getElementById("type" + i + j).textContent;
+            courseName = document.getElementById("course" + i + j).textContent;
             
-            if (courseName ==  "") {
-                curNumBlanks = 1;
-            }
             semInfo[i][j + 3][0] = courseName;
             semInfo[i][j + 3][1] = grade;
             semInfo[i][j + 3][2] = type;
-            
-
+            console.log(grade);
             switch (grade) {
                 case "A":
                 semGradePoint += 4.0;
@@ -201,11 +108,12 @@ function calculate() {
                 case "N":
                     semGradePoint += 0.0;
                     break;
-                case "":
-                    semGradePoint += 0.0;
+                default:
+                    semGradePoint += 0.0; 
                     semBlanks++;
                     break;
             }
+            
             if (grade != "") {
                 switch (type) {
                     // AP level course, adds 1 onto grade score
@@ -223,7 +131,10 @@ function calculate() {
                     // Elective course, does not add to grade score, only for STEM school
                 }
             }
+            
+            
         }
+        
 
         
 
@@ -233,7 +144,7 @@ function calculate() {
         totalGradePoint += semGradePoint;
         totalCourseWeight += semCourseWeight;
         numBlanks += semBlanks;
-        curNumBlanks += numBlanks;
+
         if (!(semUWGrades[i] >= 0)) {
             semUWGrades[i] = "0.00";
             semWGrades[i] = "0.00";
@@ -254,14 +165,24 @@ function calculate() {
         let semGpa = document.getElementById("semester" + i);
         if (semGpa == null) {
             let semGpas = document.createElement("h2");
+            let name = document.createElement("h2");
             if (semNames[i] != "") {
-                semGpas.innerHTML = "<pre>" + semNames[i] + "\n     Unweighted: " + semUWGrades[i] + "\n     Weighted: " + semWGrades[i] + "</pre>";
+				
+				name.innerHTML = "<pre>" + semNames[i] + "</pre>";
+				semGpas.style.fontWeight = `500`;
+                semGpas.innerHTML = "<pre>     Unweighted: " + semUWGrades[i] + "\n     Weighted: " + semWGrades[i] + "</pre>";
             } else {
-                semGpas.innerHTML = "<pre>Semester " + (i+1) + "\n     Unweighted: " + semUWGrades[i] + "\n     Weighted: " + semWGrades[i] + "</pre>";
+				name.innerHTML = "<pre>Semester " + (i + 1) + "</pre>";
+				name.style.fontWeight = `500`;
+				name.style.top = `-40px`;
+                semGpas.innerHTML = "<pre>     Unweighted: " + semUWGrades[i] + "\n     Weighted: " + semWGrades[i] + "</pre>";
             }            
             semGpas.id = "semester" + i;
+            name.id = "semestersssss" + i;
             let semGrades = document.getElementById("semesterGrades");
+            semGrades.appendChild(name);
             semGrades.appendChild(semGpas);
+            
             semTextCount++;
         } else {
             if (semNames[i] != "") {
@@ -270,8 +191,7 @@ function calculate() {
                 semGpa.innerHTML = "<pre>Semester " + (i+1) + "\n     Unweighted: " + semUWGrades[i] + "\n     Weighted: " + semWGrades[i] + "</pre>";
             }
         }
-    }
-
+	}
 
     document.getElementById("unweightedGpa").textContent = "Cumulative Unweighted GPA: " + unweightedGpa;
     document.getElementById("weightedGpa").textContent = "Cumulative Weighted GPA: " + weightedGpa;
@@ -281,53 +201,31 @@ function calculate() {
 }
 
 function save() {
-    calculate();
-        
-    let good = true;
-    for (let i = 0; i < semInfo.length; i++) {
-        if (semInfo[i].length != 10) {
-            good = false;
-            console.log("Not Correct Length");
-        }
-    }
-
-    if (semInfo.length > 8) {
-        good = false;
-    }
-
-    if (curNumBlanks != 0) {
-        good = false;
-    }
-
-    if (good) {
-        const courseData = {
-            "identifier" : "123325",
-            "cumulative_weighted_gpa": cumulativeWeightedGpa,
-            "cumulative_unweighted_gpa": cumulativeUnweightedGpa,
-            "semesters": semInfo,
-        };
-        const jsonData = JSON.stringify(courseData);
-        console.log(jsonData);
-        fetch('http://localhost:8082/gpacalculator', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: jsonData
-          })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Succesos:', data);
-            // Optionally, perform any actions after successful submission
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            // Optionally, handle errors here
-          });
-    } else {
-        console.log("DID NOT SAVE: DOES NOT MEET REQUIREMENTS")
-    }
     
+    const courseData = {
+        "identifier" : "123325",
+        "cumulative_weighted_gpa": cumulativeWeightedGpa,
+        "cumulative_unweighted_gpa": cumulativeUnweightedGpa,
+        "semesters": semInfo,
+    };
+    const jsonData = JSON.stringify(courseData);
+    console.log(jsonData);
+    fetch('http://localhost:8082/gpacalculator', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: jsonData
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Succesos:', data);
+        // Optionally, perform any actions after successful submission
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Optionally, handle errors here
+      });
 }
 
 function addSemester() {
@@ -340,8 +238,6 @@ function addSemester() {
     semInfo[semCount-1].unshift(0.0);
     semInfo[semCount-1].unshift(0.0);
     semInfo[semCount-1].unshift("");
-    console.log(semInfo);
-    console.log(semInfo[0]);
     
     let template = document.getElementById("calculator");
 
@@ -351,35 +247,17 @@ function addSemester() {
 
     
     clone.style.visibility = `visible`;
-    let addCourseBtn = clone.querySelector(".addCourseBtn");
-    let curSem = semCount;
-    addCourseBtn.onclick = function() {addCourse(curSem)};
+    
 
     borderHeights.push(160);
-    semHeights.push(semHeights[semCount-1] + borderHeights[semCount-1] + 130);
+    semHeights.push(semHeights[semCount-1] + borderHeights[semCount-1] + 50);
     clone.style.top = `${semHeights[semCount]}px`;
 
-    document.getElementById("addSemBtn").style.top = `${semHeights[semCount] + borderHeights[semCount] + 115}px`;
-    
     // Append the cloned element to the container
     document.getElementById("tables").appendChild(clone);
 
-    addCourse(semCount);
-    addCourse(semCount);
 }
 
-function semNameChange() {
-    for (let i = 0; i < semUWGrades.length; i++) {
-        semNames[i] = document.getElementById("calculator" + (i+1)).querySelector(".semName").value;
-        if (semNames[i] != "" && i < semTextCount) {
-            let semGpa = document.getElementById("semester" + (i));
-            semGpa.innerHTML = "<pre>" + semNames[i] + "\n     Unweighted: " + semUWGrades[i] + "\n     Weighted: " + semWGrades[i] + "</pre>";
-        }
-        semInfo[i][0] = semNames[i];
-    }
-    console.log(semNames);
-    
-}
 
 function gradeChanged(select) {
     // Get the selected value
@@ -394,3 +272,29 @@ function gradeChanged(select) {
         calculate();
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const apiUrl = 'http://localhost:8082/transcript?json';
+    fetch(apiUrl)
+        .then(response => {
+            // Check if response is successful
+            if (!response.ok) {
+                throw new Error(`API request failed: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+			console.log(data.semesters)
+			for (let i = 0; i < numOfCoursesPerSem.length; i++) {
+				for (let j = 0; j < numOfCoursesPerSem[i]; j++) {
+					document.getElementById("course" + i + j).textContent = data.semesters[i][j+3][0];
+					document.getElementById("grade" + i + j).textContent = data.semesters[i][j+3][1];
+					document.getElementById("type" + i + j).textContent = data.semesters[i][j+3][2];
+				}
+			}
+			calculate();
+        })
+        .catch(error => {
+            console.error('Error fetching data from API:', error);
+        });
+});

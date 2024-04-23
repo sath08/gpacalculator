@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.OutputStream;
+import java.net.URI;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
@@ -26,20 +27,29 @@ public class TranscriptHandler implements HttpHandler {
 
 	private void handleGetRequest(HttpExchange exchange) throws Exception {
         // Retrieve identifier from URL
+		String format = exchange.getRequestURI().getQuery();
+		// Find CSV file for identifier, read file content, and covert to java object
+		//TODO fix this
+		String identifier = "123325";
 
-		String identifier = exchange.getRequestURI().getQuery();
-		if (identifier == null) {
-			identifier = "123325";
-		}
         // Find CSV file for identifier, read file content, and covert to java object
-		StudentRecord studentRecord = readFile("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\Transcript_" + identifier + ".csv");
-        // Convert java object to json string
-		Gson gson = new Gson(); 
-		String studentRecordAsJson = gson.toJson(studentRecord);
-		System.out.println(studentRecordAsJson);
-        byte[] encoded = studentRecordAsJson.getBytes();
-        exchange.sendResponseHeaders(200, encoded.length);
-        exchange.getResponseHeaders().set("Content-Type", "application/json");
+		StudentRecord studentRecord = readFile("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\data\\Transcript_" + identifier + ".csv");
+
+		byte[] encoded = null;
+		if (format.equals("json")) {
+			Gson gson = new Gson();
+			String studentRecordAsJson = gson.toJson(studentRecord);
+			System.out.println(studentRecordAsJson);
+			encoded = studentRecordAsJson.getBytes();
+			exchange.getResponseHeaders().set("Content-Type", "application/json");
+			exchange.sendResponseHeaders(200, encoded.length);
+		} else {
+			//send it as a csv file
+			encoded = studentRecord.toString().getBytes();
+			exchange.getResponseHeaders().set("Content-Type","application/octet-stream");
+			exchange.getResponseHeaders().set("Content-Disposition", "attachment; filename=" + "Transcript.csv");
+			exchange.sendResponseHeaders(200, encoded.length);
+		}
         OutputStream os = exchange.getResponseBody();
         os.write(encoded);
         os.close();

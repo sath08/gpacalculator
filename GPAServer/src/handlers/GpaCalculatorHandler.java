@@ -7,8 +7,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Scanner;
@@ -23,7 +26,13 @@ public class GpaCalculatorHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         //if exchange is GET return "Hello Get"
         if (exchange.getRequestMethod().equals("GET")) {
-            handleGetRequest(exchange);
+            try {
+				handleGetRequest(exchange);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
         }
         //if exchange is POST return "Hello Post"
         if (exchange.getRequestMethod().equals("POST")) {
@@ -35,8 +44,10 @@ public class GpaCalculatorHandler implements HttpHandler {
         }
     }
     // handle GET request
-    private void handleGetRequest(HttpExchange exchange) throws IOException {
-        byte[] encoded = Files.readAllBytes(Paths.get("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\src\\resources\\gpacalc.html"));;
+    private void handleGetRequest(HttpExchange exchange) throws IOException, URISyntaxException {
+        // write code to retrieve a file path from the resources folder
+        URI url  = this.getClass().getClassLoader().getResource("gpacalc.html").toURI();
+        byte[] encoded = Files.readAllBytes(Paths.get(url));
         exchange.sendResponseHeaders(200, encoded.length);
         exchange.getResponseHeaders().set("Content-Type", "text/html");
         OutputStream os = exchange.getResponseBody();
@@ -58,7 +69,7 @@ public class GpaCalculatorHandler implements HttpHandler {
     }
     
     private String writeToFile(Serializable content, String identifier) throws Exception {
-    	String fileName = "Transcript_" + identifier + ".csv";
+    	String fileName = "data/Transcript_" + identifier + ".csv";
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(content);
