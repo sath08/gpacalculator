@@ -1,0 +1,136 @@
+body {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+
+.subtitle {
+    position:absolute;
+    color: #006298;
+    top: -70px;
+    font-size: 50px;
+    left: 20px;
+}
+
+.header {
+    background: #006298;
+    height: 80px;
+    position: fixed;
+    top:0;
+    text-align:left;
+    font-size: 20px;
+    color: white;
+    z-index: 2;
+    left: 230px;
+    
+    
+    width:100%;
+    
+}
+
+.header h1 {
+    position: absolute;
+    top:-9px;
+    left: 10px;
+}
+
+
+
+.dropdown {
+    z-index: 2;
+    position: fixed;
+    width: 230px;
+    height: 100vh;
+    top:0;
+    left:0;
+    background-color: #004e78;
+    
+}
+
+.dropbtn {
+    background-color: rgba(111, 176, 216, 0);
+    color: white;
+    font-size: 105px;
+    padding: 0px;
+    border: none;
+    cursor:pointer;
+}
+
+.line {
+    border:1px solid #dceff7;
+
+}
+  
+.menuContent {
+    top:0px;
+    position: absolute;
+    width: 100%;
+}
+.menuContent a {
+    color: white;
+    padding: 10% 5%;
+    font-size: 23px;
+    font-weight: 600;
+    position: relative; 
+    text-decoration: none;
+    display: block;
+}
+
+.user {
+    color: white;
+    
+    font-weight: 600;
+    height: fit-content;
+    top: 0;
+    left:0;
+    position:relative;
+}
+
+.user svg {
+    height: 30px;
+    left: 6%;
+    top: -2px;
+    
+    position: absolute;
+}
+
+.user p {
+    position: relative;
+    left: 23%;
+    font-size: 25px;
+}
+  
+.menuContent a:hover {background-color: #111538}
+
+.apResources, .genResources {
+	position: absolute;
+	left: calc(230px + 3%);
+	width: calc(35%);
+	background-color: #dceff7;
+	top: 170px;
+	border-radius: 20px;
+	padding-right: 30px;
+}
+
+.genResources {
+	left: calc(44% + 230px);
+}
+.apResources h1, .genResources h1 {
+	top: -90px;
+	font-size: 40px;
+	position: absolute;
+	color: #004e78;
+}
+
+.apResources h2, .genResources h2 {
+	left: 20px;
+	font-size: 30px;
+	position: relative;
+	color: #004e78;
+}
+
+.apResources p, .genResources p {
+	left: 20px;
+	position: relative;
+	color: #004e78;
+	font-size: 25px;
+}

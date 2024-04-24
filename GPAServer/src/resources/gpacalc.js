@@ -18,7 +18,7 @@ document.getElementById("popUp").classList.remove("popUp");
 let cumulativeWeightedGpa = 0;
 let cumulativeUnweightedGpa = 0;
 
-numOfCoursesPerSem = [];
+let numOfCoursesPerSem = [];
 
 addSemester();
 
@@ -265,7 +265,7 @@ function save() {
     for (let i = 0; i < semInfo.length; i++) {
         if (semInfo[i].length != 10) {
             good = false;
-            error = ("Does not meet course criteria (7 courses)");
+            error = ("Not Correct Length");
         }
     }
 
@@ -278,8 +278,8 @@ function save() {
         good = false;
         error = ("Some Information Has Been Left Blank")
     }
-	
-	for (let i = 0; i < semInfo.length; i++) {
+
+    for (let i = 0; i < semInfo.length; i++) {
         for (let j = 0; j < semInfo.length; j++) {
             if (semInfo[i][0] == semInfo[j][0] && i != j) {
                 good = false;
@@ -287,11 +287,11 @@ function save() {
             }
         }
         if (semInfo[i][0] == "Choose Semester" || semInfo[i][0] == "") {
-            error = "No Semester Selected";
+            error = "No Semester Selected"
             good = false;
         }
     }
-    
+
     if (good) {
         const courseData = {
             "identifier" : "123325",
@@ -319,10 +319,12 @@ function save() {
           });
     } else {
         
+        
+        
         let popUp = document.getElementById("popUp")
         let message = popUp.querySelector(".message");
 
-        message.textContent = "Did Not Save: " + error;
+        message.textContent = "DID NOT SAVE: " + error;
 
         popUp.appendChild(message);
         popUp.style.opacity = 100;
@@ -349,8 +351,6 @@ function addSemester() {
     semInfo[semCount-1].unshift(0.0);
     semInfo[semCount-1].unshift(0.0);
     semInfo[semCount-1].unshift("");
-    console.log(semInfo);
-    console.log(semInfo[0]);
     
     let template = document.getElementById("calculator");
 
@@ -358,6 +358,8 @@ function addSemester() {
     let clone = template.cloneNode(true);
     clone.id = "calculator" + semCount;
 
+    let deleteSemesterBtn = clone.querySelector(".deleteSemesterBtn");
+    deleteSemesterBtn.onclick = function() {deleteSemester(curSem)}
     
     clone.style.visibility = `visible`;
     let addCourseBtn = clone.querySelector(".addCourseBtn");
@@ -370,14 +372,15 @@ function addSemester() {
 
     let addSemBtn = document.getElementById("addSemBtn");
     addSemBtn.style.top = `${semHeights[semCount] + borderHeights[semCount] + 115}px`;
-    // Remove the class to stop the animation
-    addSemBtn.classList.remove("addSemBtn");
-
-    // Force a reflow
-    void addSemBtn.offsetWidth;
-
-    // Reapply the class to restart the animation
-    addSemBtn.classList.add("addSemBtn");
+    if (semCount > 1) {
+        addSemBtn.classList.add('semBtnMove');
+    
+        // Remove the class after the animation is done (adjust the timeout according to your animation duration)
+        setTimeout(function() {
+            addSemBtn.classList.remove('semBtnMove');
+        }, 1000);
+        
+    }
     
     // Append the cloned element to the container
     document.getElementById("tables").appendChild(clone);
@@ -396,7 +399,6 @@ function semNameChange() {
         }
         semInfo[i][0] = semNames[i];
     }
-    console.log(semNames);
     
 }
 
@@ -412,4 +414,63 @@ function gradeChanged(select) {
         blankOption.hidden = true;
         calculate();
     }
+}
+
+function deleteSemester(semNum) {
+    console.log(semNum);
+    document.getElementById("calculator" + semNum).remove();
+    semCount--;
+
+    numOfCourses -= numOfCoursesPerSem[semNum-1];
+
+    numOfCoursesPerSem.splice(semNum-1, 1);
+    semUWGrades.splice(semNum-1, 1);
+    semWGrades.splice(semNum-1, 1);
+    semNames.splice(semNum-1, 1);
+    semInfo.splice(semNum-1, 1);
+
+    let addSemBtn = document.getElementById("addSemBtn");
+
+    borderHeights.splice(semNum, 1);
+    semHeights.splice(semNum, 1);
+
+    for (var i = semNum; i < semHeights.length; i++) {
+        semHeights[i] = semHeights[i-1] + borderHeights[i-1] + 130;
+        let calc = document.getElementById("calculator" + (i + 1))
+        calc.style.top = `${semHeights[i]}px`;
+        calc.id = "calculator" + i;
+        console.log(i);
+        console.log(numOfCoursesPerSem);
+        for (var j = 0; j < numOfCoursesPerSem[i-1]; j++) {
+            let grade = document.getElementById("grade" + (i) + j);
+            grade.id = "grade" + (i-1) + j;
+            let type = document.getElementById("type" + (i) + j);
+            type.id = "type" + (i-1) + j;
+            let courseName = document.getElementById("course" + (i) + j);
+            courseName.id = "course" + (i-1) + j;
+            let del = document.getElementById("delete" + i + j);
+            del.id = "delete" + (i-1) + j;
+            del.onclick = function() {remove(i-1, j)};
+        }
+        
+        let addCourseBtn = calc.querySelector(".addCourseBtn");
+        let curSem = i;
+        addCourseBtn.onclick = function() {addCourse(curSem)};
+
+        let deleteSemesterBtn = calc.querySelector(".deleteSemesterBtn");
+        deleteSemesterBtn.onclick = function() {deleteSemester(curSem)}
+
+        console.log(calc)
+        console.log(semHeights[i]);
+    }
+    let semText = document.getElementById("semester" + (semCount));
+    console.log(semCount);
+    if (semText != null) {
+        semText.remove();
+        calculate();
+        semTextCount--;
+    }
+    addSemBtn.style.top = `${semHeights[semCount] + borderHeights[semCount] + 115}px`;
+
+    console.log(semHeights);
 }

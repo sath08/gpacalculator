@@ -1,3 +1,4 @@
+
 body {
     font-family: 'Fira Sans', sans-serif;
 }
@@ -10,6 +11,14 @@ body {
     padding: 10px;
     top: 100px;
 }
+
+.styleLine1 {
+    position: absolute;
+    width: 94%;
+    top: 60px;
+    border: 1px solid #006298
+}
+
 
 .subtitle {
     position:absolute;
@@ -81,6 +90,7 @@ body {
     position: relative; 
     text-decoration: none;
     display: block;
+    transition: background-color 0.5s;
 }
 
 .user {
@@ -107,7 +117,7 @@ body {
     font-size: 25px;
 }
   
-.menuContent a:hover {background-color: #111538}
+.menuContent a:hover {background-color: #00304a}
   
 .show {
     display: block;
@@ -173,12 +183,6 @@ body {
     }
 }
 
-.styleLine1 {
-    position: absolute;
-    width: 94%;
-    top: 60px;
-    border: 1px solid #006298
-}
 
 .calculator p {
     position: absolute;
@@ -214,7 +218,7 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
-.addCourseBtn, .addSemBtn {
+.addCourseBtn, .addSemBtn, .deleteSemesterBtn {
     width: 200px;
     height: 50px;
     border-radius: 67px;
@@ -225,6 +229,25 @@ body {
     font-weight:600;
     color: white;
     background: #006298;
+    transition: background-color 0.5s, border-width 0.5s; /* Add transition effect for border color and width */
+    box-sizing: border-box;
+}
+
+.deleteSemesterBtn {
+    color: #006298;
+    background-color: #003b5b00;
+    border: 1px solid #006298;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    transition: color 0.5s, border-color 0.5s;
+}
+
+.deleteSemesterBtn:hover {
+    color: red;
+    border-color: red;
 }
 
 .addCourseBtn {
@@ -237,13 +260,15 @@ body {
     height: 70px;
     font-size: 30px;
     bottom: -500px;
-    animation: semBtnMove 1s ease-in-out forwards;
+}
 
+.semBtnMove {
+    animation: semBtnMove 1s ease-in-out forwards;
 }
 
 @keyframes semBtnMove {
     0% {
-        transform: translateY(-400px);
+        transform: translateY(-390px);
     }
     100% {
         transform: translateY(0px);
@@ -259,7 +284,7 @@ body {
     background-color:#00497000;
     bottom: 20px;
     top: -20%;
-    right: 30%;
+    right: 0%;
     color: #006298;
     font-size: 22px;
     font-weight: 600;
@@ -270,7 +295,19 @@ body {
     border: 2px solid #004970;
 }
 
-.addCourseBtn:hover, .calculateBtn:hover, .addSemBtn:hover {background: #004970;
+.addSemBtn:hover {
+    border-style: solid;
+    border-width: 15px;
+    border-color: #003b5b;
+    background-color: #003b5b;
+    
+}
+
+.addCourseBtn:hover {
+    border-style: solid;
+    border-width: 10px;
+    border-color: #003b5b;
+    background-color: #003b5b;
 }
 
 .inputContainer {
@@ -336,6 +373,7 @@ body {
 .deletes button {
     border-radius: 30px;
     font-size: 20px;
+    transition: color 0.5s;
 }
 
 .deletes button:hover {color:red}

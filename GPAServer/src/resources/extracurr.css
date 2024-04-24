@@ -245,8 +245,8 @@ body {
     opacity: 0px;
     background-color:#00497000;
     bottom: 20px;
-    top: -20%;
-    right: 30%;
+    top: 18%;
+    right: 0%;
     color: #006298;
     font-size: 22px;
     font-weight: 600;
@@ -342,7 +342,7 @@ body {
     left: calc(70% + 30px);
     color: #006298;
     align-items: center;
-    top: 100%;
+    top: 75%;
     height:max-content;
     display: block;
 }

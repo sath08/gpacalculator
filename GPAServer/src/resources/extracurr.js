@@ -3,7 +3,7 @@ let numOfCourses = 0;
 let borderHeights = [0]
 let lineHeight = 50;
 let semCount = 0;
-let semHeights = [-20]
+let semHeights = [-60]
 let semUWGrades = []
 let semWGrades = []
 let semNames = ["Sports", "Clubs", "Volunteering", "Leadership"];
@@ -213,13 +213,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const apiUrl = 'http://localhost:8082/extracurr';
     fetch(apiUrl)
         .then(response => {
-            // Check if response is successful
             if (!response.ok) {
                 throw new Error(`API request failed: ${response.statusText}`);
             }
             return response.json();
         })
         .then(data => {
+			console.log("hi");
 			for (let i = 0; i < data.Sports.length; i++) {
                 addCourse(1);
                 document.getElementById("progress" + 0 + i).value = data.Sports[i][3];
