@@ -3,7 +3,7 @@ let numOfCourses = 0;
 let borderHeights = [0]
 let lineHeight = 50;
 let semCount = 0;
-let semHeights = [-60]
+let semHeights = [-20]
 let semUWGrades = []
 let semWGrades = []
 let semNames = ["Sports", "Clubs", "Volunteering", "Leadership"];
@@ -219,7 +219,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-			console.log("hi");
 			for (let i = 0; i < data.Sports.length; i++) {
                 addCourse(1);
                 document.getElementById("progress" + 0 + i).value = data.Sports[i][3];

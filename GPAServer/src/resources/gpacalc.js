@@ -1,9 +1,11 @@
+let websiteHeight = 70;
+
 let numOfCourses = 0;
 
 let borderHeights = [0]
 let lineHeight = 50;
 let semCount = 0;
-let semHeights = [-100]
+let semHeights = [websiteHeight - 100]
 let semUWGrades = []
 let semWGrades = []
 let semNames = [];
