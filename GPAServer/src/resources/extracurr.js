@@ -14,6 +14,8 @@ let semInfo = [[], [], [], []]; // GROUP -> EC -> (Course, curState, goalState, 
 let cumulativeWeightedGpa = 0;
 let cumulativeUnweightedGpa = 0;
 
+document.getElementById("popUp").classList.remove("popUp");
+
 let numOfCoursesPerSem = [];
 
 for (var i = 0; i < 4; i++) {
@@ -49,6 +51,7 @@ function addCourse(semNum) {
     let courseBox = document.createElement("input");
     courseBox.id = "course" + curSem + index;
     courseBox.onchange = function() {calculate()};
+    courseBox.maxLength = "8";
     border.querySelector(".courseNames").appendChild(courseBox);
 
 
@@ -165,6 +168,21 @@ function save() {
         console.error('Error:', error);
         // Optionally, handle errors here
       });
+    let popUp = document.getElementById("popUp")
+    let message = popUp.querySelector(".message");
+
+    message.textContent = "SAVED SUCCESFULLY!";
+    popUp.appendChild(message);
+    popUp.style.opacity = 100;
+
+    popUp.classList.remove("popUp");
+
+    // Force a reflow
+    void popUp.offsetWidth;
+
+    // Reapply the class to restart the animation
+    popUp.classList.add("popUp");
+    popUp.style.opacity = 0;
 }
 
 function addSemester() {

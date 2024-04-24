@@ -1,3 +1,6 @@
+document.getElementById("popUp").classList.remove("popUp");
+
+
 document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -27,6 +30,21 @@ document.getElementById('login-form').addEventListener('submit', function(event)
             } else {
                 console.error('Login failed');
                 // Handle login failure
+                let popUp = document.getElementById("popUp")
+		        let message = popUp.querySelector(".message");
+		
+		        message.textContent = "Credentials Do Not Match";
+		        popUp.appendChild(message);
+		        popUp.style.opacity = 100;
+		
+		        popUp.classList.remove("popUp");
+		
+		        // Force a reflow
+		        void popUp.offsetWidth;
+		
+		        // Reapply the class to restart the animation
+		        popUp.classList.add("popUp");
+		        popUp.style.opacity = 0;
             }
         })
         .catch(error => {

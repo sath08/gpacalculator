@@ -47,7 +47,7 @@ function addCourse(semNum) {
     courseBox.id = "course" + curSem + index;
     courseBox.placeholder = "Enter Course Name...";
     courseBox.onchange = function() {calculate()};
-    courseBox.maxLength = "30";
+    courseBox.maxLength = "20";
     border.querySelector(".courseNames").appendChild(courseBox);
 
 
@@ -319,6 +319,22 @@ function save() {
             console.error('Error:', error);
             // Optionally, handle errors here
           });
+        
+        let popUp = document.getElementById("popUp")
+        let message = popUp.querySelector(".message");
+
+        message.textContent = "SAVED SUCCESFULLY!";
+        popUp.appendChild(message);
+        popUp.style.opacity = 100;
+
+        popUp.classList.remove("popUp");
+
+        // Force a reflow
+        void popUp.offsetWidth;
+
+        // Reapply the class to restart the animation
+        popUp.classList.add("popUp");
+        popUp.style.opacity = 0;
     } else {
         
         

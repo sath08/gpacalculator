@@ -283,6 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
 			console.log(data.semesters)
             for (let i = 0; i < data.semesters.length; i++) {
+				console.log(i);
                 for (let j = 0; j < data.semesters[i].length - 3; j++) {
                     let sem = semNames.indexOf(data.semesters[i][0]);       
                     document.getElementById("course" + sem + j).textContent = data.semesters[i][j+3][0];

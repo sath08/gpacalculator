@@ -22,7 +22,7 @@
 		})();
 	</script>
     <div class="header">
-        <h1 class="title">GPA Calculator</h1>
+        <h1 class="title">GradeGear</h1>
     </div>
     
     
@@ -30,16 +30,19 @@
         
         <div class="menuContent" id="menu">
             <div class="user">
-                <img src="http://localhost:8082/resources?logo.jpg">
+                <img src="http://localhost:8082/resources?logo.png">
             </div>
             <div class="line"></div>
-            <a href="http://localhost:8082/resources?gpacalc.html">Home</a>
+            <a href="http://localhost:8082/resources?gpacalc.html">GPA Calculator</a>
             <a href="http://localhost:8082/resources?transcript.html">4 Year Plan</a>
-            <a href="http://localhost:8082/resources?extracurr.html">Extra Curriculars</a>
+            <a href="http://localhost:8082/resources?extracurr.html">Extracurriculars</a>
             <a href="http://localhost:8082/resources?gparesources.html">Resources</a>
             <a href="http://localhost:8082/resources?instructions.html">Instructions</a>
         </div>
         <a href="http://localhost:8082/resources?login.html" class="logout">Logout</a>
+    </div>
+    <div class="popUp" id="popUp">
+        <h2 class="message">hi</h2>
     </div>
     <div class="calcContainer" id="calcContainer">
         <div class="tables" id="tables">
@@ -62,7 +65,7 @@
                     <button class="addCourseBtn" onclick="addCourse(0)">Add Row</button>
                 </div>
             </div>
-            <button class="saveBtn" onclick="save()">Export Extracurriculars</button>
+            <button class="saveBtn" onclick="save()">Save Extracurriculars</button>
             <div class="gpaContainer">
                 <div class="groups" id="groups">
                     

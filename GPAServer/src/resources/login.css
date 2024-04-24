@@ -1,5 +1,6 @@
 body {
     font-family: 'Fira Sans', sans-serif;
+    color: #4A7092;
 }
 .wrapper {
     position: absolute;
@@ -20,7 +21,7 @@ body {
 
 .titleWrap {
     position: absolute;
-    height: 660px;
+    height: 600px;
     width: 400px;
     display: flex;
     justify-content: center;
@@ -32,8 +33,9 @@ body {
     left: -10px;
 }
 .titleWrap img {
-    height: 155px;
-    left: -10px;
+    height: 100px;
+    left: -30px;
+    top: 25px;
     position: relative;
 }
 
@@ -84,7 +86,7 @@ body {
 
 .wrapper h2 {
     font-size: 2em;
-    color: #162938;
+    color: #4A7092;
     text-align: center;
 }
 
@@ -108,7 +110,7 @@ body {
     border-radius: 10px;
     box-sizing: border-box;
     font-size: 16px;
-    color: #162938;
+    color: #4A7092;
     font-weight: 600;
 }
 
@@ -130,14 +132,45 @@ body {
 
 .login-register {
     font-size: .9em;
-    color: #162938;
+    color: #4A7092;
     text-align: center;
     font-weight: 500;
     margin: 25px 0 10px;
 }
 
 .login-register p a {
-    color: #162938;
-    text-decoration: none;
+    color: #4A7092;
+
     font-weight: 600; 
+}
+
+.popUp {
+    position: fixed;
+    top: 50px;
+    z-index: 5;
+    border-radius: 5px;
+    border: 5px solid #003b5b;
+    right: 50px;
+    width: 300px;
+    height: 100px;
+    background-color: #DCEFF7;
+    animation: fade 10s ease-in-out;
+    opacity: 0%;
+    display: flex;
+}
+
+.message {
+    top: 16px;
+    position: absolute;
+    color: #003b5b;
+    text-align: center;
+    width: 100%;
+}
+@keyframes fade {
+    0% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
 }

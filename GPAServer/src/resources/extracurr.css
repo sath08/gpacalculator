@@ -409,3 +409,34 @@ body {
 .groups pre, .statuses pre {
     font-family: 'Fira Sans', sans-serif;
 }
+
+.popUp {
+    position: fixed;
+    top: 50px;
+    z-index: 5;
+    border-radius: 5px;
+    border: 5px solid #003b5b;
+    right: 50px;
+    width: 300px;
+    height: 100px;
+    background-color: #DCEFF7;
+    animation: fade 10s ease-in-out;
+    opacity: 0%;
+    display: flex;
+}
+
+.message {
+    top: -10px;
+    position: absolute;
+    color: #003b5b;
+    text-align: center;
+    width: 100%;
+}
+@keyframes fade {
+    0% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
+}

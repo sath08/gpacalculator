@@ -38,7 +38,6 @@ public class LoginHandler implements HttpHandler{
             credentials.put(username, password);
             users.put(username, identifier);
         }
-       
 	}
 
     @Override
