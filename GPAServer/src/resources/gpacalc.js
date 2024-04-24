@@ -1,3 +1,5 @@
+// Initializes all variables
+
 let websiteHeight = 70;
 
 let numOfCourses = 0;
@@ -14,47 +16,69 @@ let semInfo = []; // SEMESTERS -> COURSES -> [COURSE, GRADE, TYPE]
 
 let curNumBlanks = 0;
 
-
+// Hides the popUp element
 document.getElementById("popUp").classList.remove("popUp");
 
+// Initializes more variables
 let cumulativeWeightedGpa = 0;
 let cumulativeUnweightedGpa = 0;
 
 let numOfCoursesPerSem = [];
 
+// Adds a semester to start
 addSemester();
 
+// This function adds a course to the semester specified by the parameter, "semNum".
+// It will add an input box for the course name, two dropdowns for the grade and type of the course, and a delete btn to delete the course later.
 function addCourse(semNum) {
-    
+    // border is set to be the entire semester border/element
     let border = document.getElementById("calculator" + semNum);
+    // Adds an empty array of three elements, representing the course name, grade, and type of the course that is added
+    // This is added to the semInfo array which contains each semester and their courses and other information about the semester
     semInfo[semNum-1].push([0, 0, 0])
 
+    // Loops through each semester below the semester and changes the height since the additional course takes up space 
     for (var i = semNum + 1; i <= semCount; i++) {
         let curBorder = document.getElementById("calculator" + i);
         semHeights[i] += lineHeight;
         curBorder.style.top = `${semHeights[i]}px`;
     }
-    
+
+    // Changes the height of the semester to which the course was added
     borderHeights[semNum] += lineHeight;
+    // Makes the border height change
     border.style.height = `${borderHeights[semNum]}px`;
+    // Increments the number of courses for later use
     numOfCourses++;
     numOfCoursesPerSem[semNum-1]++;
+
+    // Sets the  var courseBox to be a new input element to  which  the  user can add their course name
     let courseBox = document.createElement("input");
 
+    // Creates a new variable curSem to be the current semester index - 1 to account for arrays starting at index 0
     let curSem = (semNum-1).toString();
+    // Creates the variable index to hold the position the coursebox is in.
     let index = (numOfCoursesPerSem[semNum-1] - 1).toString();
 
+    // Sets the id of the coursebox to be unique, telling the position of the box so it can be accessed later in the code
     courseBox.id = "course" + curSem + index;
+    // Sets the placeholder for the box
     courseBox.placeholder = "Enter Course Name...";
+    // Makes the calculate() function be called when the coursebox is edited by the user, indicating a change in course name
     courseBox.onchange = function() {calculate()};
+    // Sets the max length of the coursebox to be 20 characters
     courseBox.maxLength = "20";
+    // Appends the coursebox to the semester
     border.querySelector(".courseNames").appendChild(courseBox);
 
-
+    // creates a select element for the grade dropdown
     let gradeDrop = document.createElement("select");
+    // Sets the id of the dropdown to be unique, telling the position of the box so it can be accessed later in the code
     gradeDrop.id = "grade" + curSem + index;
 
+    // creates an array to hold the possible grade that a user may input
     let grades = ["A", "B+", "B", "B-", "C+", "C", "C-", "N"];
+    // Adds each grade to be an option element with the text of each element in the array
     let option = document.createElement("option");
     option.value = "";
     gradeDrop.add(option);
@@ -64,11 +88,14 @@ function addCourse(semNum) {
         gradeDrop.add(option);
     });
     let temp = gradeDrop;
+    // lets the  calculate btn be called  when  the  grade is changed by the user
     gradeDrop.onchange = function() {gradeChanged(temp)};
+    // adds the grade dropdown to  the semester
     border.querySelector(".grades").appendChild(gradeDrop);
 
-
+    // Creates a select element for the type dropdown
     let typeDrop = document.createElement("select");
+    
     typeDrop.id = "type" + curSem + index;
 
     let types = ["Regular", "Honors", "AP"];
