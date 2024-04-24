@@ -1,4 +1,5 @@
 package handlers;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,11 +20,11 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import domain.Extracurr;
 import domain.StudentRecord;
 
 public class GpaCalculatorHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
-        //if exchange is GET return "Hello Get"
         if (exchange.getRequestMethod().equals("GET")) {
             try {
 				handleGetRequest(exchange);
@@ -33,7 +34,6 @@ public class GpaCalculatorHandler implements HttpHandler {
 				e.printStackTrace();
 			}
         }
-        //if exchange is POST return "Hello Post"
         if (exchange.getRequestMethod().equals("POST")) {
             try {
 				handlePostRequest(exchange);
@@ -44,7 +44,7 @@ public class GpaCalculatorHandler implements HttpHandler {
     }
     // handle GET request
     private void handleGetRequest(HttpExchange exchange) throws IOException, URISyntaxException {
-        // write code to retrieve a file path from the resources folder
+        //code to retrieve a file path from the resources folder
         URI url  = this.getClass().getClassLoader().getResource("gpacalc.html").toURI();
         byte[] encoded = Files.readAllBytes(Paths.get(url));
         exchange.sendResponseHeaders(200, encoded.length);
@@ -61,6 +61,8 @@ public class GpaCalculatorHandler implements HttpHandler {
         StudentRecord studentRecord = gson.fromJson(reqBodyAsString, StudentRecord.class);
         exchange.sendResponseHeaders(200, response.length());
         updateTranscript(studentRecord);
+        String identifier = readIdentifier("user_identifier.txt");
+        studentRecord.setIdentifier(identifier);
         writeToFile(studentRecord, studentRecord.getIdentifier());
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
@@ -83,5 +85,11 @@ public class GpaCalculatorHandler implements HttpHandler {
     		String semesterName = (String) semester[0];
     		semesterInfo.put(semesterName, semester);
     	}
+    }
+    
+    private String readIdentifier(String path) throws Exception{
+        FileInputStream fileIn = new FileInputStream(path);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        return(String) in.readObject();
     }
 }

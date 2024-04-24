@@ -4,12 +4,13 @@ import java.io.Serializable;
 
 public class Extracurr implements Serializable {
 	
+	// Cleanup
 	private static final long serialVersionUID = 1L;
     private String identifier;
-    private String[][] sports;
-    private String[][] clubs;
-    private String[][] volunteering;
-    private String[][] leadership;
+    private String[][] Sports;
+    private String[][] Clubs;
+    private String[][] Volunteering;
+    private String[][] Leadership;
 
     public String getIdentifier() {
         return identifier;
@@ -20,34 +21,34 @@ public class Extracurr implements Serializable {
     }
 
     public String[][] getSports() {
-        return sports;
+        return Sports;
     }
 
     public void setSports(String[][] sports) {
-        this.sports = sports;
+        this.Sports = sports;
     }
 
     public String[][] getClubs() {
-        return clubs;
+        return Clubs;
     }
 
     public void setClubs(String[][] clubs) {
-        this.clubs = clubs;
+        this.Clubs = clubs;
     }
 
     public String[][] getVolunteering() {
-        return volunteering;
+        return Volunteering;
     }
 
     public void setVolunteering(String[][] volunteering) {
-        this.volunteering = volunteering;
+        this.Volunteering = volunteering;
     }
 
     public String[][] getLeadership() {
-        return leadership;
+        return Leadership;
     }
 
     public void setLeadership(String[][] leadership) {
-        this.leadership = leadership;
+        this.Leadership = leadership;
     }
 }

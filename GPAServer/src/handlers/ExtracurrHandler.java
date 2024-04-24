@@ -39,7 +39,7 @@ public class ExtracurrHandler implements HttpHandler {
     }
 
 	private void handleGetRequest(HttpExchange exchange) throws Exception {
-		String identifier = "123325";
+		String identifier = readIdentifier("user_identifier.txt");
 		Extracurr extracurr = readFile("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\data\\Extracurricular_" + identifier + ".csv");
 		Gson gson = new Gson();
 		String extracurrAsJson = gson.toJson(extracurr);
@@ -47,6 +47,9 @@ public class ExtracurrHandler implements HttpHandler {
 		byte[] encoded = extracurrAsJson.getBytes();
 		exchange.getResponseHeaders().set("Content-Type", "application/json");
 		exchange.sendResponseHeaders(200, encoded.length);
+        OutputStream os = exchange.getResponseBody();
+        os.write(encoded);
+        os.close();
 	}
 
 	private Extracurr readFile(String path) throws Exception {
@@ -64,6 +67,8 @@ public class ExtracurrHandler implements HttpHandler {
         Gson gson = new Gson(); 
         Extracurr extracurr = gson.fromJson(reqBodyAsString, Extracurr.class);
         exchange.sendResponseHeaders(200, response.length());
+		String identifier = readIdentifier("user_identifier.txt");
+		extracurr.setIdentifier(identifier);
         writeToFile(extracurr, extracurr.getIdentifier());
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
@@ -78,5 +83,11 @@ public class ExtracurrHandler implements HttpHandler {
         fileOutputStream.close();
         objectOutputStream.close();
         return fileName;
+    }
+    
+    private String readIdentifier(String path) throws Exception{
+        FileInputStream fileIn = new FileInputStream(path);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        return(String) in.readObject();
     }
 }

@@ -2,22 +2,39 @@ body {
     font-family: 'Fira Sans', sans-serif;
 }
 
+.instructionsBtnContainer {
+    align-items: center;
+    position:relative;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    top: 100px;
+}
+
+.styleLine1 {
+    position: absolute;
+    width: 94%;
+    top: 60px;
+    border: 1px solid #006298
+}
+
 
 .subtitle {
     position:absolute;
     color: #006298;
-    top: -70px;
+    top: -30px;
     font-size: 50px;
     left: 20px;
 }
 
+
 .header {
     background: #006298;
-    height: 80px;
+    height: 120px;
     position: fixed;
     top:0;
     text-align:left;
-    font-size: 20px;
+    font-size: 30px;
     color: white;
     z-index: 2;
     left: 230px;
@@ -30,7 +47,7 @@ body {
 .header h1 {
     position: absolute;
     top:-9px;
-    left: 10px;
+    left: 30px;
 }
 
 
@@ -64,6 +81,7 @@ body {
     top:0px;
     position: absolute;
     width: 100%;
+    height: 100%;
 }
 .menuContent a {
     color: white;
@@ -73,30 +91,40 @@ body {
     position: relative; 
     text-decoration: none;
     display: block;
+    transition: background-color 0.5s;
+}
+
+.logout {
+    color: white;
+    padding: 10% 5%;
+    font-size: 23px;
+    font-weight: 600;
+    position: relative; 
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.5s;
+    position: absolute;
+    bottom: 0px;
+    width: calc(100% - 23px);
 }
 
 .user {
     color: white;
-    
+    display: flex;
     font-weight: 600;
-    height: fit-content;
+    height: 120px;
     top: 0;
     left:0;
     position:relative;
+    align-items: center;
+    justify-content: center;
 }
 
-.user svg {
-    height: 30px;
-    left: 6%;
-    top: -2px;
+.user img {
+    height: 100px;
+    
     
     position: absolute;
-}
-
-.user p {
-    position: relative;
-    left: 23%;
-    font-size: 25px;
 }
   
 .menuContent a:hover {background-color: #111538}
@@ -106,7 +134,7 @@ body {
 	left: calc(230px + 3%);
 	width: calc(35%);
 	background-color: #dceff7;
-	top: 170px;
+	top: 220px;
 	border-radius: 20px;
 	padding-right: 30px;
 }

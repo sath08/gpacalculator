@@ -29,8 +29,7 @@ public class TranscriptHandler implements HttpHandler {
         // Retrieve identifier from URL
 		String format = exchange.getRequestURI().getQuery();
 		// Find CSV file for identifier, read file content, and covert to java object
-		//TODO fix this
-		String identifier = "123325";
+		String identifier = readIdentifier("user_identifier.txt");
 
         // Find CSV file for identifier, read file content, and covert to java object
 		StudentRecord studentRecord = readFile("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\data\\Transcript_" + identifier + ".csv");
@@ -63,4 +62,10 @@ public class TranscriptHandler implements HttpHandler {
         fileIn.close();
         return studentRecord;
 	}
+	
+    private String readIdentifier(String path) throws Exception{
+        FileInputStream fileIn = new FileInputStream(path);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        return(String) in.readObject();
+    }
 }
