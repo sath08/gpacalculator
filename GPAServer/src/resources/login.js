@@ -23,7 +23,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
             if (response.ok) {
                 console.log('Login successful');
                 // Redirect to the GPA calculator page
-                window.location.href = 'http://localhost:8082/gpacalculator';
+                window.location.href = 'http://localhost:8082/resources?gpacalc.html';
             } else {
                 console.error('Login failed');
                 // Handle login failure

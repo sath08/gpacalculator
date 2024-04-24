@@ -10,8 +10,8 @@ public class StudentRecord implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private String identifier;
-	private Double cumulativeWeightedGpa;
-	private Double cumulativeUnweightedGpa;
+	private Double cumulative_weighted_gpa;
+	private Double cumulative_unweighted_gpa;
     private List<Object[]> semesters; 
 	private HashMap<String, Object[]> semesterInfo;
 	
@@ -26,7 +26,7 @@ public class StudentRecord implements Serializable{
 		semesterInfo.put("Senior Semester 1", null);
 		semesterInfo.put("Senior Semester 2", null);
 	}
-	// Getters and Setters
+	
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -36,19 +36,19 @@ public class StudentRecord implements Serializable{
 	}
 
 	public double getCumulativeWeightedGpa() {
-		return cumulativeWeightedGpa;
+		return cumulative_weighted_gpa;
 	}
 
 	public void setCumulativeWeightedGpa(Double cumulativeWeightedGpa) {
-		this.cumulativeWeightedGpa = cumulativeWeightedGpa;
+		this.cumulative_weighted_gpa = cumulativeWeightedGpa;
 	}
 
 	public Double getCumulativeUnweightedGpa() {
-		return cumulativeUnweightedGpa;
+		return cumulative_unweighted_gpa;
 	}
 
 	public void setCumulativeUnweightedGpa(Double cumulativeUnweightedGpa) {
-		this.cumulativeUnweightedGpa = cumulativeUnweightedGpa;
+		this.cumulative_unweighted_gpa = cumulativeUnweightedGpa;
 	}
 
 	public List<Object[]> getSemesters() {
@@ -71,8 +71,8 @@ public class StudentRecord implements Serializable{
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("Student Transcript\n");
 		buffer.append("Identifier," + identifier + "\n");
-		buffer.append("Cumulative Weighted GPA," + cumulativeWeightedGpa + "\n");
-		buffer.append("Cumulative Unweighted GPA," + cumulativeUnweightedGpa + "\n");
+		buffer.append("Cumulative Weighted GPA," + cumulative_weighted_gpa + "\n");
+		buffer.append("Cumulative Unweighted GPA," + cumulative_unweighted_gpa + "\n");
         for (Map.Entry<String,Object[]> entry: semesterInfo.entrySet()) { 
         	if (entry.getValue() != null) {
 	        	for (int i = 0; i < entry.getValue().length; i++) { // Ignore the Semester Name at Index 0

@@ -3,8 +3,6 @@ package domain;
 import java.io.Serializable;
 
 public class Extracurr implements Serializable {
-	
-	// Cleanup
 	private static final long serialVersionUID = 1L;
     private String identifier;
     private String[][] Sports;

@@ -1,75 +1,50 @@
 package handlers;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
-import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import domain.Extracurr;
 import domain.StudentRecord;
+import server.Utils;
 
 public class GpaCalculatorHandler implements HttpHandler {
+	
     public void handle(HttpExchange exchange) throws IOException {
-        if (exchange.getRequestMethod().equals("GET")) {
-            try {
-				handleGetRequest(exchange);
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			}
-        }
-        if (exchange.getRequestMethod().equals("POST")) {
+    	if (exchange.getRequestMethod().equals("POST")) {
             try {
 				handlePostRequest(exchange);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+        }else {
+        	System.out.println("ERROR - Not supported request methods");
         }
     }
-    // handle GET request
-    private void handleGetRequest(HttpExchange exchange) throws IOException, URISyntaxException {
-        //code to retrieve a file path from the resources folder
-        URI url  = this.getClass().getClassLoader().getResource("gpacalc.html").toURI();
-        byte[] encoded = Files.readAllBytes(Paths.get(url));
-        exchange.sendResponseHeaders(200, encoded.length);
-        exchange.getResponseHeaders().set("Content-Type", "text/html");
-        OutputStream os = exchange.getResponseBody();
-        os.write(encoded);
-        os.close();
-    }
+
     // handle POST request
-    private void handlePostRequest(HttpExchange exchange) throws Exception {
+    private void handlePostRequest(HttpExchange exchange) throws IOException, ClassNotFoundException {
         String response = "Transcript Sucessfully Saved";
         String reqBodyAsString = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
         Gson gson = new Gson(); 
         StudentRecord studentRecord = gson.fromJson(reqBodyAsString, StudentRecord.class);
         exchange.sendResponseHeaders(200, response.length());
         updateTranscript(studentRecord);
-        String identifier = readIdentifier("user_identifier.txt");
+        String identifier = Utils.readIdentifier();
         studentRecord.setIdentifier(identifier);
-        writeToFile(studentRecord, studentRecord.getIdentifier());
+        writeToDisk(studentRecord, studentRecord.getIdentifier());
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
     }
     
-    private String writeToFile(Serializable content, String identifier) throws Exception {
+    private String writeToDisk(Serializable content, String identifier) throws IOException {
     	String fileName = "data/Transcript_" + identifier + ".csv";
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -87,9 +62,4 @@ public class GpaCalculatorHandler implements HttpHandler {
     	}
     }
     
-    private String readIdentifier(String path) throws Exception{
-        FileInputStream fileIn = new FileInputStream(path);
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-        return(String) in.readObject();
-    }
 }

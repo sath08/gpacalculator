@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.List;
-
 class Semester {
     private String name;
     private double unweightedGPA;

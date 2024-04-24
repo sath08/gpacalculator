@@ -11,6 +11,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import domain.StudentRecord;
+import server.Utils;
 
 public class TranscriptHandler implements HttpHandler {
 
@@ -29,7 +30,7 @@ public class TranscriptHandler implements HttpHandler {
         // Retrieve identifier from URL
 		String format = exchange.getRequestURI().getQuery();
 		// Find CSV file for identifier, read file content, and covert to java object
-		String identifier = readIdentifier("user_identifier.txt");
+		String identifier = Utils.readIdentifier();
 
         // Find CSV file for identifier, read file content, and covert to java object
 		StudentRecord studentRecord = readFile("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\data\\Transcript_" + identifier + ".csv");

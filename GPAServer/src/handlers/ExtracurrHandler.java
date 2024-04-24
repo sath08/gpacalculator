@@ -15,6 +15,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import domain.Extracurr;
+import server.Utils;
 import domain.Extracurr;
 
 public class ExtracurrHandler implements HttpHandler {
@@ -27,55 +28,61 @@ public class ExtracurrHandler implements HttpHandler {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-        }
-        //if exchange is POST return "Hello Post"
-        if (exchange.getRequestMethod().equals("POST")) {
+        }else if (exchange.getRequestMethod().equals("POST")) {
             try {
 				handlePostRequest(exchange);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+        }else {
+        	System.out.println("ERROR - Not supported request methods");
         }
     }
-
-	private void handleGetRequest(HttpExchange exchange) throws Exception {
-		String identifier = readIdentifier("user_identifier.txt");
-		Extracurr extracurr = readFile("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\data\\Extracurricular_" + identifier + ".csv");
+	/**
+	 * Implementation for handling GET for Extracurricular. 
+	 * Retrieves the saved extracurricular for the user and
+	 * returns the corresponding data in JSON format
+	 * @param exchange - Http Exchange Object
+	 * @throws IOException, ClassNotFoundException 
+	 */
+	private void handleGetRequest(HttpExchange exchange) throws IOException, ClassNotFoundException {
+		String identifier = Utils.readIdentifier();
+		Extracurr extracurr = retrieveFromDisk("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\data\\Extracurricular_" + identifier + ".csv");
+		
 		Gson gson = new Gson();
 		String extracurrAsJson = gson.toJson(extracurr);
 		System.out.println(extracurrAsJson);
-		byte[] encoded = extracurrAsJson.getBytes();
+		byte[] extracurrBytes = extracurrAsJson.getBytes();
 		exchange.getResponseHeaders().set("Content-Type", "application/json");
-		exchange.sendResponseHeaders(200, encoded.length);
+		exchange.sendResponseHeaders(200, extracurrBytes.length);
         OutputStream os = exchange.getResponseBody();
-        os.write(encoded);
+        os.write(extracurrBytes);
         os.close();
 	}
 
-	private Extracurr readFile(String path) throws Exception {
-        FileInputStream fileIn = new FileInputStream(path);
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-        Extracurr extracurr = (Extracurr) in.readObject();
-        in.close();
-        fileIn.close();
-        return extracurr;
-	}
-
+	
 	private void handlePostRequest(HttpExchange exchange) throws Exception {
         String response = "Extracurriculars Sucessfully Saved";
         String reqBodyAsString = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
         Gson gson = new Gson(); 
         Extracurr extracurr = gson.fromJson(reqBodyAsString, Extracurr.class);
         exchange.sendResponseHeaders(200, response.length());
-		String identifier = readIdentifier("user_identifier.txt");
+		String identifier = Utils.readIdentifier();
 		extracurr.setIdentifier(identifier);
-        writeToFile(extracurr, extracurr.getIdentifier());
+        storeToDisk(extracurr, extracurr.getIdentifier());
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
 	}
-
-    private String writeToFile(Serializable content, String identifier) throws Exception {
+	
+	/**
+	 * Stores the content to the disk with a specific format
+	 * @param content
+	 * @param identifier
+	 * @return
+	 * @throws Exception
+	 */
+    private String storeToDisk(Serializable content, String identifier) throws Exception {
     	String fileName = "data/Extracurricular_" + identifier + ".csv";
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -84,10 +91,20 @@ public class ExtracurrHandler implements HttpHandler {
         objectOutputStream.close();
         return fileName;
     }
-    
-    private String readIdentifier(String path) throws Exception{
+        
+    /**
+     * Read the extracurricular stored at the specified path
+     * @param path
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+	private Extracurr retrieveFromDisk(String path) throws IOException, ClassNotFoundException {
         FileInputStream fileIn = new FileInputStream(path);
         ObjectInputStream in = new ObjectInputStream(fileIn);
-        return(String) in.readObject();
-    }
+        Extracurr extracurr = (Extracurr) in.readObject();
+        in.close();
+        fileIn.close();
+        return extracurr;
+	}
 }

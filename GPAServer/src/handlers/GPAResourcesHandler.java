@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class GPAResourcesHandler implements HttpHandler {
-    public void handle(HttpExchange exchange) throws IOException {
+    public void handle(HttpExchange exchange) {
         //if exchange is GET return "Hello Get"
         if (exchange.getRequestMethod().equals("GET")) {
             try {
@@ -20,29 +20,26 @@ public class GPAResourcesHandler implements HttpHandler {
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			}
-        }
-        //if exchange is POST return "Hello Post"
-        if (exchange.getRequestMethod().equals("POST")) {
-            handlePostRequest(exchange);
+        } else {
+        	System.out.println("ERROR - Not supported request methods");
         }
     }
+
     // handle GET request
     private void handleGetRequest(HttpExchange exchange) throws IOException, URISyntaxException {
-        URI url  = this.getClass().getClassLoader().getResource(exchange.getRequestURI().getQuery()).toURI();
-        byte[] encoded = Files.readAllBytes(Paths.get(url));
-        exchange.sendResponseHeaders(200, encoded.length);
+        String fileName = exchange.getRequestURI().getQuery();
+        byte[] bytes = readFile(fileName);
+        exchange.sendResponseHeaders(200, bytes.length);
         exchange.getResponseHeaders().set("Content-Type", "text/html");
         OutputStream os = exchange.getResponseBody();
-        os.write(encoded);
+        os.write(bytes);
         os.close();
     }
-    // handle POST request
-    private void handlePostRequest(HttpExchange exchange) throws IOException {
-        String response = "Hello Post Resources";
-        exchange.sendResponseHeaders(200, response.length());
-        OutputStream os = exchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
+
+    private byte[] readFile (String fileName) throws IOException, URISyntaxException {
+    	URI url  = this.getClass().getClassLoader().getResource(fileName).toURI();
+        return Files.readAllBytes(Paths.get(url));
+        
     }
 }
 
