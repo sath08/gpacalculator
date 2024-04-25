@@ -1,10 +1,22 @@
 package security;
 
+/**
+ * Cipher class for encrypting the credentials for the service.
+ * Provides encrypt & decrypt methods
+ * 
+ */
 public class GPACalcCipher {
+
+    /**
+     * Helper method for decryption
+     */
     public static String decrypt(String enc, int offset) {
         return encrypt(enc, 26-offset);
     }
 
+    /**
+     * Helper method for encryption
+     */
     public static String encrypt(String enc, int offset) {
         offset = offset % 26 + 26;
         StringBuilder encryptedString = new StringBuilder();
