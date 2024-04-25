@@ -23,9 +23,9 @@ public class Credential implements Serializable {
 	 * @param	none
 	 * @return			username field
 	 */	
-    public String getUsername() {
-        return username;
-    }
+    	 public String getUsername() {
+        	return username;
+    	 }
     
 	/**
 	 * Setter method for username field.
@@ -33,9 +33,9 @@ public class Credential implements Serializable {
 	 * @param	username	the string the user inputs into the username box
 	 * @return	none
 	 */	
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    	 public void setUsername(String username) {
+        	this.username = username;
+    	 }
     
 	/**
 	 * Accessor method for password field.
@@ -43,9 +43,9 @@ public class Credential implements Serializable {
 	 * @param	none
 	 * @return			password field
 	 */	
-    public String getPassword() {
-        return password;
-    }
+    	 public String getPassword() {
+        	return password;
+    	 }
 
 	/**
 	 * Setter method for username field.
@@ -53,7 +53,7 @@ public class Credential implements Serializable {
 	 * @param	password	the string the user inputs into the passwordbox
 	 * @return	none
 	 */	
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    	 public void setPassword(String password) {
+        	this.password = password;
+    	 }
 }
