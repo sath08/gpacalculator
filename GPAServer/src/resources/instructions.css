@@ -3,16 +3,6 @@ body {
     font-family: 'Fira Sans', sans-serif;
 }
 
-/* Container for instruction buttons */
-.instructionsBtnContainer {
-    align-items: center;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    top: 100px; /* Adjust top position */
-}
-
 /* Style for line separator */
 .styleLine1 {
     position: absolute;
