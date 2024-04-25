@@ -64,9 +64,9 @@ public class ExtracurrHandler implements HttpHandler {
 		byte[] extracurrBytes = extracurrAsJson.getBytes();
 		exchange.getResponseHeaders().set("Content-Type", "application/json");
 		exchange.sendResponseHeaders(200, extracurrBytes.length);
-        OutputStream os = exchange.getResponseBody();
-        os.write(extracurrBytes);
-        os.close();
+        	OutputStream os = exchange.getResponseBody();
+        	os.write(extracurrBytes);
+        	os.close();
 	}
 
 	/**
@@ -78,17 +78,17 @@ public class ExtracurrHandler implements HttpHandler {
 	 * @throws IOException, ClassNotFoundException 
 	 */
 	private void handlePostRequest(HttpExchange exchange) throws Exception {
-        String response = "Extracurriculars Sucessfully Saved";
-        String reqBodyAsString = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-        Gson gson = new Gson(); 
-        Extracurr extracurr = gson.fromJson(reqBodyAsString, Extracurr.class);
-        exchange.sendResponseHeaders(200, response.length());
-		String identifier = Utils.readIdentifier();
-		extracurr.setIdentifier(identifier);
-        storeToDisk(extracurr, extracurr.getIdentifier());
-        OutputStream os = exchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
+	        String response = "Extracurriculars Sucessfully Saved";
+	        String reqBodyAsString = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+	        Gson gson = new Gson(); 
+	        Extracurr extracurr = gson.fromJson(reqBodyAsString, Extracurr.class);
+	        exchange.sendResponseHeaders(200, response.length());
+			String identifier = Utils.readIdentifier();
+			extracurr.setIdentifier(identifier);
+	        storeToDisk(extracurr, extracurr.getIdentifier());
+	        OutputStream os = exchange.getResponseBody();
+	        os.write(response.getBytes());
+	        os.close();
 	}
 	
 	/**
