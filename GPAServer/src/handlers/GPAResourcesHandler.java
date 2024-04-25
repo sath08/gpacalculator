@@ -10,8 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * Handler GET requests for the resources and calls corresponding method
- * and accounting for exceptions. 
+ * Handler for /resources context responsible for managing resources. 
+ * Only GET method is supported. 
  * 
  */
 public class GPAResourcesHandler implements HttpHandler {
@@ -38,10 +38,10 @@ public class GPAResourcesHandler implements HttpHandler {
     }
 
 	/**
-	 * Method for handling GET requests. Retrieves the html code in the resources and 
-	 * the corresponding data, outputs in a JSON format to client.
+	 * Method for handling GET requests. Retrieves the resource file name 
+	 * specified in query and writes the contents of the file to Outputstream
 	 * 
-	 * @param exchange		Http Exchange Object
+	 * @param exchange	Http Exchange Object
 	 * @throws IOException	URISyntaxException 
 	 * 
 	 */
@@ -58,8 +58,8 @@ public class GPAResourcesHandler implements HttpHandler {
 	/**
 	 * Helper method for reading files and returning byte array.
 	 * 
-	 * @param fileName		Query of url
-	 * @return byte[]		Byte array created by conversion of html page to bytes
+	 * @param fileName		filename to read
+	 * @return byte[]		Byte array for the contents of the file
 	 * @throws IOException	URISyntaxException 
 	 * 
 	 */
