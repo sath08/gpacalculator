@@ -1,52 +1,57 @@
-let numOfCourses = 0;
+// Initialize variables to store course and semester information
+let numOfCourses = 0; // Number of courses
+let borderHeights = [0]; // Heights of semester borders
+let lineHeight = 50; // Height of each line (course entry)
+let semCount = 0; // Number of semesters
+let semHeights = [-20]; // Heights of semesters
+let semUWGrades = []; // Unweighted grades for semesters
+let semWGrades = []; // Weighted grades for semesters
+let semNames = ["Sports", "Clubs", "Volunteering", "Leadership"]; // Names of semesters
+let semTextCount = 0; // Count of semester texts
 
-let borderHeights = [0]
-let lineHeight = 50;
-let semCount = 0;
-let semHeights = [-20]
-let semUWGrades = []
-let semWGrades = []
-let semNames = ["Sports", "Clubs", "Volunteering", "Leadership"];
-let semTextCount = 0;
+// Array to store extracurricular information: GROUP -> EC -> (Course, curState, goalState, progress)
+let semInfo = [[], [], [], []];
 
-let semInfo = [[], [], [], []]; // GROUP -> EC -> (Course, curState, goalState, progress)
-
+// Variables to store cumulative GPA values
 let cumulativeWeightedGpa = 0;
 let cumulativeUnweightedGpa = 0;
 
-document.getElementById("popUp").classList.remove("popUp");
-
+// Array to track the number of courses per semester
 let numOfCoursesPerSem = [];
 
+// Loop to initialize semesters and set their names
 for (var i = 0; i < 4; i++) {
     addSemester();
-    //for (var j = 0; j < 4; j++) {   
-    //    addCourse(i+1);
-    //}
     document.getElementById("calculator" + (i + 1)).querySelector(".semName").textContent = semNames[i];
 }
 
+// Calculate GPA
 calculate();
-function addCourse(semNum) {
-    let border = document.getElementById("calculator" + semNum);
-    console.log(semNum-1);
-    semInfo[semNum-1].push(["", "", "", ""])
 
+// Function to add a course to a semester
+function addCourse(semNum) {
+    // Get the border element for the specified semester
+    let border = document.getElementById("calculator" + semNum);
+    
+    // Push an empty array to store course information for the current semester
+    semInfo[semNum - 1].push(["", "", "", ""]);
+
+    // Adjust heights of subsequent semesters
     for (var i = semNum + 1; i <= semCount; i++) {
         let curBorder = document.getElementById("calculator" + i);
         semHeights[i] += lineHeight;
         curBorder.style.top = `${semHeights[i]}px`;
     }
     
+    // Adjust border height and number of courses
     borderHeights[semNum] += lineHeight;
     border.style.height = `${borderHeights[semNum]}px`;
     numOfCourses++;
 
-    let curSem = (semNum-1).toString();
-    let index = (numOfCoursesPerSem[semNum-1]).toString();
-
-    numOfCoursesPerSem[semNum-1]++;
-
+    // Create input elements for course information
+    let curSem = (semNum - 1).toString();
+    let index = (numOfCoursesPerSem[semNum - 1]).toString();
+    numOfCoursesPerSem[semNum - 1]++;
 
     let courseBox = document.createElement("input");
     courseBox.id = "course" + curSem + index;
@@ -54,12 +59,10 @@ function addCourse(semNum) {
     courseBox.maxLength = "8";
     border.querySelector(".courseNames").appendChild(courseBox);
 
-
     let curStateBox = document.createElement("input");
     curStateBox.id = "curState" + curSem + index;
     curStateBox.onchange = function() {calculate()};
     border.querySelector(".curStates").appendChild(curStateBox);
-
 
     let goalStateBox = document.createElement("input");
     goalStateBox.id = "goalState" + curSem + index;
@@ -67,11 +70,10 @@ function addCourse(semNum) {
     border.querySelector(".goalStates").appendChild(goalStateBox);
 
     let progress = document.createElement("select");
-
     let progresses = ["", "Need To Start", "Half Done", "Done"];
     
-    
-    progresses.forEach(progType=> {
+    // Populate progress dropdown
+    progresses.forEach(progType => {
         let option = document.createElement("option");
         option.text = progType;
         progress.add(option);
@@ -81,17 +83,21 @@ function addCourse(semNum) {
     border.querySelector(".progresses").appendChild(progress);
 }
 
+// Function to calculate GPA
 function calculate() {
     let groups = document.getElementById("groups");
     let statuses = document.getElementById("statuses");
+
+    // Clear previous GPA display
     while (groups.firstChild) {
         groups.removeChild(groups.firstChild);
     }
     while (statuses.firstChild) {
         statuses.removeChild(statuses.firstChild);
     }
+
+    // Loop through semesters and courses to calculate and display GPA
     for (let i = 0; i < numOfCoursesPerSem.length; i++) {
-        
         let semGpas = document.createElement("h2");
         semGpas.innerHTML = "<pre>" + semNames[i] + "</pre>";
         semGpas.id = "semester" + i;
@@ -114,8 +120,9 @@ function calculate() {
 
             if (courseName != "" && progress != "") {
                 let progressText = document.createElement("h2");
-                
                 let course = document.createElement("h2");
+
+                // Set colors based on progress
                 if (progress == "Need To Start") {
                     progressText.style.color = `red`;
                     course.style.color = `red`;
@@ -131,8 +138,6 @@ function calculate() {
                 progressText.style.fontWeight = 400;
                 groups.appendChild(course);
 
-
-                
                 progressText.innerHTML = "<pre>" + progress + "</pre>";
                 statuses.appendChild(progressText);                
             }
@@ -140,9 +145,11 @@ function calculate() {
     }
 }
 
+// Function to save course data to server
 function save() {
     calculate();
-    console.log(semInfo[0]);
+
+    // Construct JSON data
     const courseData = {
         "identifier" : "123325",
         "Sports": semInfo[0],
@@ -151,7 +158,8 @@ function save() {
         "Leadership": semInfo[3],
     };
     const jsonData = JSON.stringify(courseData);
-    console.log(jsonData);
+
+    // POST request to server
     fetch('http://localhost:8082/extracurr', {
         method: 'POST',
         headers: {
@@ -161,30 +169,27 @@ function save() {
       })
       .then(response => response.json())
       .then(data => {
-        console.log('Succesos:', data);
-        // Optionally, perform any actions after successful submission
+        console.log('Success:', data);
+        // Show pop-up message on successful save
+        let popUp = document.getElementById("popUp");
+        let message = popUp.querySelector(".message");
+        message.textContent = "SAVED SUCCESSFULLY!";
+        popUp.appendChild(message);
+        popUp.style.opacity = 100;
+        popUp.classList.remove("popUp");
+
+        // Force a reflow and restart animation
+        void popUp.offsetWidth;
+        popUp.classList.add("popUp");
+        popUp.style.opacity = 0;
       })
       .catch(error => {
         console.error('Error:', error);
         // Optionally, handle errors here
       });
-    let popUp = document.getElementById("popUp")
-    let message = popUp.querySelector(".message");
-
-    message.textContent = "SAVED SUCCESFULLY!";
-    popUp.appendChild(message);
-    popUp.style.opacity = 100;
-
-    popUp.classList.remove("popUp");
-
-    // Force a reflow
-    void popUp.offsetWidth;
-
-    // Reapply the class to restart the animation
-    popUp.classList.add("popUp");
-    popUp.style.opacity = 0;
 }
 
+// Function to add a new semester section
 function addSemester() {
     semCount++;
     numOfCoursesPerSem.push(0);
@@ -194,39 +199,33 @@ function addSemester() {
     // Clone the template
     let clone = template.cloneNode(true);
     clone.id = "calculator" + semCount;
-
-    
     clone.style.visibility = `visible`;
 
+    // Set onclick event for addCourse button
     let addCourseBtn = clone.querySelector(".addCourseBtn");
     let curSem = semCount;
     addCourseBtn.onclick = function() {addCourse(curSem)};
 
-
+    // Adjust heights
     borderHeights.push(160);
-    semHeights.push(semHeights[semCount-1] + borderHeights[semCount-1] + 90);
+    semHeights.push(semHeights[semCount - 1] + borderHeights[semCount - 1] + 90);
     clone.style.top = `${semHeights[semCount]}px`;
 
     // Append the cloned element to the container
     document.getElementById("tables").appendChild(clone);
-
 }
 
-
+// Event listener for grade selection change
 function gradeChanged(select) {
-    // Get the selected value
     var selectedValue = select.value;
-    
-    // Find the blank option
     var blankOption = select.querySelector('option[value=""]');
-
-    // Disable the blank option if a selection has been made
     if (selectedValue !== "") {
         blankOption.hidden = true;
         calculate();
     }
 }
 
+// Fetch extracurricular data from API when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     const apiUrl = 'http://localhost:8082/extracurr';
     fetch(apiUrl)
@@ -274,4 +273,3 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error fetching data from API:', error);
         });
 });
-
