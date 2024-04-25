@@ -25,29 +25,29 @@ import domain.Extracurr;
  */
 public class ExtracurrHandler implements HttpHandler {
 
-/**
- * Handler for /extracurr context responsible for managing Extracurriculars. 
- * GET & POST methods are supported. 
- * 
- */
+	/**
+	 * Handler method for extracurriculars. If the method is GET, it
+	 * calls handleGetRequest. If method is POST, it calls handlePostRequest. 
+	 * 
+	 */
 	@Override
 	public void handle(HttpExchange exchange) throws IOException {
-        if (exchange.getRequestMethod().equals("GET")) {
-            try {
+	        if (exchange.getRequestMethod().equals("GET")) {
+	            try {
 				handleGetRequest(exchange);
 			} catch (Exception e) {
-				e.printStackTrace();
+					e.printStackTrace();
 			}
-        }else if (exchange.getRequestMethod().equals("POST")) {
-            try {
+	        }else if (exchange.getRequestMethod().equals("POST")) {
+	            try {
 				handlePostRequest(exchange);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-        }else {
-        	System.out.println("ERROR - Not supported request methods");
-        }
-    }
+	        }else {
+	        	System.out.println("ERROR - Not supported request methods");
+	        }
+   	 }
 	/**
 	 * Implementation for handling GET for Extracurricular. Retrieves the saved extracurricular 
 	 * for the user and returns the corresponding data in JSON format.
@@ -69,7 +69,14 @@ public class ExtracurrHandler implements HttpHandler {
         os.close();
 	}
 
-	
+	/**
+	 * Implementation for handling POST for Extracurricular. Retrieves the extracurricular 
+	 * JSON from the request, converts it to Java Object using GSON and saves the Extracurr
+	 * object to the disk.
+         *
+	 * @param exchange - Http Exchange Object
+	 * @throws IOException, ClassNotFoundException 
+	 */
 	private void handlePostRequest(HttpExchange exchange) throws Exception {
         String response = "Extracurriculars Sucessfully Saved";
         String reqBodyAsString = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
@@ -91,29 +98,29 @@ public class ExtracurrHandler implements HttpHandler {
 	 * @return
 	 * @throws Exception
 	 */
-    private String storeToDisk(Serializable content, String identifier) throws Exception {
-    	String fileName = "data/Extracurricular_" + identifier + ".csv";
-        FileOutputStream fileOutputStream = new FileOutputStream(fileName);
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        objectOutputStream.writeObject(content);
-        fileOutputStream.close();
-        objectOutputStream.close();
-        return fileName;
-    }
+    	private String storeToDisk(Serializable content, String identifier) throws Exception {
+    		String fileName = "data/Extracurricular_" + identifier + ".csv";
+        	FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+        	ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        	objectOutputStream.writeObject(content);
+        	fileOutputStream.close();
+        	objectOutputStream.close();
+        	return fileName;
+    	}
         
-    /**
-     * Read the extracurricular stored at the specified path
-     * @param path
-     * @return
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
+    	/**
+    	* Read the extracurricular stored at the specified path
+     	* @param path
+     	* @return
+     	* @throws IOException
+     	* @throws ClassNotFoundException
+     	*/
 	private Extracurr retrieveFromDisk(String path) throws IOException, ClassNotFoundException {
-        FileInputStream fileIn = new FileInputStream(path);
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-        Extracurr extracurr = (Extracurr) in.readObject();
-        in.close();
-        fileIn.close();
-        return extracurr;
+	        FileInputStream fileIn = new FileInputStream(path);
+	        ObjectInputStream in = new ObjectInputStream(fileIn);
+	        Extracurr extracurr = (Extracurr) in.readObject();
+	        in.close();
+	        fileIn.close();
+	        return extracurr;
 	}
 }
