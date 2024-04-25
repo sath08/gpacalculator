@@ -86,10 +86,4 @@ public class TranscriptHandler implements HttpHandler {
         	fileIn.close();
         	return studentRecord;
 	}
-	
-    	private String readIdentifier(String path) throws Exception{
-        	FileInputStream fileIn = new FileInputStream(path);
-        	ObjectInputStream in = new ObjectInputStream(fileIn);
-        	return(String) in.readObject();
-    	}
 }
