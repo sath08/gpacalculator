@@ -1,18 +1,17 @@
-// Initializes all variables
-
+// Initialize variables to store course and semester information
 let websiteHeight = 70;
-
-let numOfCourses = 0;
-
-let borderHeights = [0]
-let lineHeight = 50;
-let semCount = 0;
-let semHeights = [websiteHeight - 100]
-let semUWGrades = []
-let semWGrades = []
-let semNames = [];
-let semTextCount = 0;
+let semHeights = [websiteHeight - 100]; // Heights of semesters
+let semNames = []; // Names of semesters
 let semInfo = []; // SEMESTERS -> COURSES -> [COURSE, GRADE, TYPE]
+let numOfCourses = 0; // Number of courses
+let borderHeights = [0]; // Heights of semester borders
+let lineHeight = 50; // Height of each line (course entry)
+let semCount = 0; // Number of semesters
+let semUWGrades = []; // Unweighted grades for semesters
+let semWGrades = []; // Weighted grades for semesters
+let semTextCount = 0; // Count of semester texts
+
+
 
 let curNumBlanks = 0;
 
