@@ -1,106 +1,109 @@
-
+/* Define font family for the entire document */
 body {
     font-family: 'Fira Sans', sans-serif;
 }
 
+/* Styles for the container of instruction buttons */
 .instructionsBtnContainer {
     align-items: center;
-    position:relative;
+    position: relative; /* Position relative for positioning children elements */
     display: flex;
     justify-content: center;
     padding: 10px;
     top: 100px;
 }
 
+/* Style for the line separator */
 .styleLine1 {
     position: absolute;
     width: 94%;
-    top: 60px;
-    border: 1px solid #006298
+    top: 60px; /* Adjust top position as needed */
+    border: 1px solid #006298;
 }
 
-
+/* Style for subtitles */
 .subtitle {
-    position:absolute;
+    position: absolute;
     color: #006298;
     top: -30px;
     font-size: 50px;
     left: 20px;
 }
 
-
+/* Header styles */
 .header {
     background: #006298;
     height: 120px;
     position: fixed;
-    top:0;
-    text-align:left;
+    top: 0;
+    text-align: left;
     font-size: 30px;
     color: white;
     z-index: 2;
     left: 230px;
-    
-    
-    width:100%;
-    
+    width: 100%;
 }
 
+/* Styles for header text */
 .header h1 {
     position: absolute;
-    top:-9px;
+    top: -9px;
     left: 30px;
 }
 
-
-
+/* Dropdown menu styles */
 .dropdown {
     z-index: 2;
     position: fixed;
     width: 230px;
     height: 100vh;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     background-color: #004e78;
-    
 }
 
+/* Styles for dropdown button */
 .dropbtn {
     background-color: rgba(111, 176, 216, 0);
     color: white;
     font-size: 105px;
     padding: 0px;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
 }
 
+/* Separator line style */
 .line {
-    border:1px solid #dceff7;
-
+    border: 1px solid #dceff7;
 }
-  
+
+/* Menu content styles */
 .menuContent {
-    top:0px;
+    top: 0px;
     position: absolute;
     width: 100%;
     height: 100%;
 }
+
+/* Styles for menu links */
 .menuContent a {
     color: white;
     padding: 10% 5%;
     font-size: 23px;
     font-weight: 600;
-    position: relative; 
+    position: relative;
     text-decoration: none;
     display: block;
     transition: background-color 0.5s;
 }
 
+/* Logout link styles */
 .logout {
     color: white;
     padding: 10% 5%;
     font-size: 23px;
     font-weight: 600;
-    position: relative; 
+    position: relative;
     text-decoration: none;
     display: block;
     transition: background-color 0.5s;
@@ -109,41 +112,46 @@ body {
     width: calc(100% - 23px);
 }
 
+/* User section styles */
 .user {
     color: white;
     display: flex;
     font-weight: 600;
     height: 120px;
     top: 0;
-    left:0;
-    position:relative;
+    left: 0;
+    position: relative;
     align-items: center;
     justify-content: center;
 }
 
+/* User image styles */
 .user img {
     height: 100px;
-    
-    
     position: absolute;
 }
-  
-.menuContent a:hover {background-color: #111538}
-  
+
+/* Hover effect for menu links */
+.menuContent a:hover {
+    background-color: #111538;
+}
+
+/* Show class for displaying elements */
 .show {
     display: block;
 }
 
+/* Container for calculator */
 .calcContainer {
     width: calc(100% - 280px);
     left: 250px;
     position: relative;
-    
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Styles for tables */
 .tables {
     display: flex;
     position: relative;
@@ -153,6 +161,7 @@ body {
     /*border: 3px solid black;*/
 }
 
+/* Styles for sub calculator */
 .subCalc {
     display: flex;
     position: absolute;
@@ -169,6 +178,7 @@ body {
     justify-content: center;
 }
 
+/* Calculator styles */
 .calculator {
     border-radius: 30px;
     border-style: solid;
@@ -183,31 +193,38 @@ body {
     justify-content: center;
 }
 
+/* Styles for line separator */
 .styleLine1 {
     position: absolute;
     width: 94%;
     top: 60px;
-    border: 1px solid #A2A0A0
+    border: 1px solid #A2A0A0;
 }
 
+/* Styles for calculator paragraph */
 .calculator p {
     position: absolute;
     top: -16px;
     font-weight: 500;
     color: #006298;
 }
+
+/* Styles for course */
 .course {
     left: 3%;
 }
 
+/* Styles for grade */
 .grade {
     left: 59%;
 }
 
+/* Styles for type */
 .type {
     right: 18%;
 }
 
+/* Styles for semester name */
 .semName {
     top: -20px;
     left: 1%;
@@ -223,7 +240,10 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
-.addCourseBtn, .calculateBtn, .addSemBtn {
+/* Styles for buttons */
+.addCourseBtn,
+.calculateBtn,
+.addSemBtn {
     width: 200px;
     height: 50px;
     border-radius: 67px;
@@ -231,30 +251,37 @@ body {
     position: absolute;
     border: 0px;
     font-size: 22px;
-    font-weight:600;
+    font-weight: 600;
     color: white;
     background: #006298;
 }
 
+/* Styles for add course button */
 .addCourseBtn {
     left: 10%;
     bottom: 20px;
 }
+
+/* Styles for calculate button */
 .calculateBtn {
     bottom: 20px;
     justify-self: center;
 }
+
+/* Styles for add semester button */
 .addSemBtn {
     left: 7%;
     bottom: -500px;
 }
+
+/* Styles for save button */
 .saveBtn {
     border: 2px solid #006298;
     width: 250px;
     height: 50px;
     position: absolute;
     opacity: 0px;
-    background-color:#00497000;
+    background-color: #00497000;
     bottom: 20px;
     top: 20%;
     right: 0%;
@@ -266,47 +293,58 @@ body {
     text-decoration: none;
 }
 
+/* Hover effect for save button */
 .saveBtn:hover {
     color: #004970;
     border: 2px solid #004970;
 }
 
-.addCourseBtn:hover, .calculateBtn:hover, .addSemBtn:hover {background: #004970;
+/* Hover effect for buttons */
+.addCourseBtn:hover,
+.calculateBtn:hover,
+.addSemBtn:hover {
+    background: #004970;
 }
 
+/* Container for inputs */
 .inputContainer {
     position: relative;
-    box-sizing:border-box;
+    box-sizing: border-box;
     margin-top: 70px;
-    width:100%;
+    width: 100%;
 }
 
+/* Styles for grades */
 .grades {
     position: absolute;
     width: 100px;
     left: 59%;
-    line-height:50px;
+    line-height: 50px;
     top: 13px;
 }
 
+/* Styles for types */
 .types {
     position: absolute;
     width: 150px;
     right: 10%;
-    line-height:50px;
+    line-height: 50px;
     top: 13px;
 }
 
+/* Styles for course names */
 .courseNames {
     position: absolute;
     left: 3%;
     width: 50%;
-    line-height:50px;
+    line-height: 50px;
     top: 13px;
 }
 
-
-.grades p, .types p, .courseNames p {
+/* Styles for paragraph within grades, types, and course names */
+.grades p,
+.types p,
+.courseNames p {
     position: relative;
     font-weight: 400;
     width: 100%;
@@ -316,21 +354,24 @@ body {
     padding: 2px;
     padding-left: 10px;
     box-sizing: border-box;
-    
     background-color: rgba(255, 255, 255, 0);
     margin: 10px;
     line-height: 39px;
     text-align: center;
-    margin-left:0;
+    margin-left: 0;
     padding: 0px;
 }
 
+/* Styles for course names paragraph */
 .courseNames p {
     text-align: left;
     padding-left: 10px;
 }
 
-.results, .results2, .semesterGrades {
+/* Styles for result containers */
+.results,
+.results2,
+.semesterGrades {
     width: calc(30% - 30px);
     height: 100px;
     border-radius: 25px;
@@ -344,36 +385,42 @@ body {
     top: 90%;
 }
 
+/* Styles for second result container */
 .results2 {
     top: 170%;
 }
 
+/* Styles for semester grades container */
 .semesterGrades {
     top: 250%;
-    height:max-content;
+    height: max-content;
     display: block;
 }
 
+/* Styles for semester grades heading */
 .semesterGrades h2 {
     left: 20px;
     position: relative;
     width: 100%;
 }
 
+/* Styles for name */
 .name {
     position: absolute;
     left: 20%;
     bottom: 70%;
     font-size: 30px;
-    font-weight:600;
-
+    font-weight: 600;
 }
 
-.weightedGpa, .unweightedGpa {
+/* Styles for weighted and unweighted GPA */
+.weightedGpa,
+.unweightedGpa {
     position: absolute;
     left: 20px;
 }
 
+/* Additional comment for clarity */
 .semesterGrades pre {
-	font-family: 'Fira Sans', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
 }
