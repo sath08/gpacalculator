@@ -14,15 +14,21 @@ import com.sun.net.httpserver.HttpHandler;
 import domain.StudentRecord;
 import server.Utils;
 
+/**
+ * Handler for /gpacalc context responsible for managing Trascript (4 Year Plan). 
+ * POST method is supported. 
+ * 
+ */
 public class GpaCalculatorHandler implements HttpHandler {
-	
+
+    
     public void handle(HttpExchange exchange) throws IOException {
     	if (exchange.getRequestMethod().equals("POST")) {
             try {
-				handlePostRequest(exchange);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			handlePostRequest(exchange);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         }else {
         	System.out.println("ERROR - Not supported request methods");
         }
