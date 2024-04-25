@@ -20,10 +20,9 @@ public class GPACalculatorServer {
 	 * we have each one of the url paths and the associated handlers.
 	 * 
 	 * @param	path
-     * @return	none
-     * @throws	IOException
-     * @throws	ClassNotFoundException
-
+         * @return	none
+         * @throws	IOException
+         * @throws	ClassNotFoundException
 	 */
 	public static void main(String[] args) throws IOException {
 		HttpServer server = HttpServer.create(new InetSocketAddress(8082), 0);
