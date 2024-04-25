@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
     <title>GPA Calculator: 4 Year Plan</title>
+    <!-- External CSS -->
     <link rel="stylesheet" href="http://localhost:8082/resources?transcript.css"> 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Tawk.to Live Chat Script -->
 	<script type="text/javascript">
 		var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 		(function(){
@@ -21,63 +26,68 @@
 		s0.parentNode.insertBefore(s1,s0);
 		})();
 	</script>
+    <!-- Header -->
     <div class="header">
         <h1 class="title">GradeGear</h1>
     </div>
-    
-    
+    <!-- Dropdown Menu -->
     <div class="dropdown">
-        
         <div class="menuContent" id="menu">
+            <!-- User Image -->
             <div class="user">
                 <img src="http://localhost:8082/resources?logo.png">
             </div>
             <div class="line"></div>
+            <!-- Menu Links -->
             <a href="http://localhost:8082/resources?gpacalc.html">GPA Calculator</a>
             <a href="http://localhost:8082/resources?transcript.html">4 Year Plan</a>
             <a href="http://localhost:8082/resources?extracurr.html">Extracurriculars</a>
             <a href="http://localhost:8082/resources?gparesources.html">Resources</a>
             <a href="http://localhost:8082/resources?instructions.html">Instructions</a>
         </div>
+        <!-- Logout Link -->
         <a href="http://localhost:8082/resources?login.html" class="logout">Logout</a>
     </div>
+    <!-- Calculator Container -->
     <div class="calcContainer" id="calcContainer">
+        <!-- Tables -->
         <div class="tables" id="tables">
+            <!-- Title -->
             <h1 class="subtitle">4 Year Plan</h1>
+            <!-- Semester Calculator -->
             <div class="calculator" id="calculator">
                 <h2 class="semName">Freshman Semester 1</h2>
                 <div class="subCalc">
+                    <!-- Labels -->
                     <p class="course">Course</p>
                     <p class="type">Type</p>
                     <p class="grade">Grade</p>
-                    
+                    <!-- Style Line -->
                     <div class="styleLine1"></div>
+                    <!-- Input Fields -->
                     <div class="inputContainer">
                         <div id="courseNames" class="courseNames"></div>
                         <div id="grades" class="grades"></div>
                         <div id="types" class="types"></div>  
                     </div>
-                    
                 </div>
             </div>
-            <a href = "http://localhost:8082/transcript?csv" class="saveBtn">Export Transcript</a>
+            <!-- Export Transcript Button -->
+            <a href="http://localhost:8082/transcript?csv" class="saveBtn">Export Transcript</a>
+            <!-- GPA Results -->
             <div class="gpaContainer">
                 <div class="results" id="results">
                     <h2 class="weightedGpa" id="weightedGpa">Cumulative Weighted GPA: </h2>
-                    
-                    
                 </div>
                 <div class="results2" id="results2">
                     <h2 class="unweightedGpa" id="unweightedGpa">Cumulative Unweighted GPA: </h2>
                 </div>
-
-                <div class="semesterGrades" id="semesterGrades">
-                </div>
+                <!-- Semester-wise GPA -->
+                <div class="semesterGrades" id="semesterGrades"></div>
             </div>
         </div>        
     </div>
-    
-    
+    <!-- External JavaScript -->
     <script src="http://localhost:8082/resources?transcript.js"></script>
 </body>
 </html>
