@@ -21,7 +21,11 @@ import server.Utils;
  */
 public class GpaCalculatorHandler implements HttpHandler {
 
-    
+    /**
+    * Handler method for transcript. If the method is POST, it
+    * calls handlePostRequest. 
+    * 
+    */
     public void handle(HttpExchange exchange) throws IOException {
     	if (exchange.getRequestMethod().equals("POST")) {
             try {
