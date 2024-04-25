@@ -1,7 +1,13 @@
-body {
+/** 
+ * Makes the font for the website one font 
+ */
+ body {
     font-family: 'Fira Sans', sans-serif;
 }
 
+/** 
+ * Repositions the instructions button 
+ */
 .instructionsBtnContainer {
     align-items: center;
     position:relative;
@@ -11,6 +17,9 @@ body {
     top: 100px;
 }
 
+/** 
+ * Makes the style line to be 60 ox from the top, also changes the color and the width 
+ */
 .styleLine1 {
     position: absolute;
     width: 94%;
@@ -18,7 +27,9 @@ body {
     border: 1px solid #006298
 }
 
-
+/** 
+ * Makes the subtitle be -30 px from the top of the div it is in, changes font size and the color 
+ */
 .subtitle {
     position:absolute;
     color: #006298;
@@ -27,7 +38,9 @@ body {
     left: 20px;
 }
 
-
+/** 
+ * The header is set to a background of blue and the color is set to white it is also aligned to the left 
+ */
 .header {
     background: #006298;
     height: 120px;
@@ -38,20 +51,21 @@ body {
     color: white;
     z-index: 2;
     left: 230px;
-    
-    
     width:100%;
-    
 }
 
+/** 
+ * Also changed the header and all h1s in the div to adjust the position of them 
+ */
 .header h1 {
     position: absolute;
     top:-9px;
     left: 30px;
 }
 
-
-
+/** 
+ * Makes the dropdown boxes for the grade and also colors it to fit the theme 
+ */
 .dropdown {
     z-index: 2;
     position: fixed;
@@ -60,9 +74,11 @@ body {
     top:0;
     left:0;
     background-color: #004e78;
-    
 }
 
+/** 
+ * Makes the drop button background color black and the color white and when hovered over the cursor changes 
+ */
 .dropbtn {
     background-color: rgba(111, 176, 216, 0);
     color: white;
@@ -70,19 +86,28 @@ body {
     padding: 0px;
     border: none;
     cursor:pointer;
-}
+} 
 
+/** 
+ * Makes the line that separates the title of the grade and all the input and drop down boxes 
+ */
 .line {
     border:1px solid #dceff7;
-
 }
-  
+
+/** 
+ * Makes the menu content to be at the very top and the width and height covers the screen 
+ */
 .menuContent {
     top:0px;
     position: absolute;
     width: 100%;
     height: 100%;
 }
+
+/** 
+ * Makes the href in the css white and the display is block (it will always display until not block) 
+ */
 .menuContent a {
     color: white;
     padding: 10% 5%;
@@ -94,6 +119,9 @@ body {
     transition: background-color 0.5s;
 }
 
+/** 
+ * Makes the logout to be white in color and it is at the bottom of the screen 
+ */
 .logout {
     color: white;
     padding: 10% 5%;
@@ -108,6 +136,9 @@ body {
     width: calc(100% - 23px);
 }
 
+/** 
+ * Makes the user's section styled 
+ */
 .user {
     color: white;
     display: flex;
@@ -120,31 +151,42 @@ body {
     justify-content: center;
 }
 
+/** 
+ * Makes the position and the height for the image for our logo 
+ */
 .user img {
     height: 100px;
-    
-    
     position: absolute;
 }
 
-  
+/** 
+ * Makes the menu content change color when hovered over 
+ */
 .menuContent a:hover, .logout:hover {background-color: #00304a}
-  
+
+/** 
+ * Adds the show class to display an element 
+ */
 .show {
     display: block;
 }
 
+/** 
+ * Positions the calculator container to be in the correct position 
+ */
 .calcContainer {
     width: calc(100% - 280px);
     left: 250px;
     position: relative;
-    
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.tables {
+/** 
+ * Positions the table to be in the correct position 
+ */
+ .tables {
     display: flex;
     position: relative;
     height: 160px;
@@ -153,6 +195,10 @@ body {
     /*border: 3px solid black;*/
 }
 
+/** 
+ * Makes the subcalc stay in the correct position and makes the background for that div white 
+ * and makes it have rounded edges and makes it have the correct width and height 
+ */
 .subCalc {
     display: flex;
     position: absolute;
@@ -169,6 +215,9 @@ body {
     justify-content: center;
 }
 
+/** 
+ * Makes the calculator div have a background of white, fixes the width and height for it 
+ */
 .calculator {
     background: #dceff7;
     border-radius: 30px;
@@ -201,18 +250,31 @@ body {
     font-weight: 500;
     color: #006298;
 }
+
+/** 
+ * Positions the course title in the calc box 
+ */
 .course {
     left: 3%;
 }
 
+/** 
+ * Positions the course title in the calc box 
+ */
 .grade {
     left: 59%;
 }
 
+/** 
+ * Positions the course title in the calc box 
+ */
 .type {
     right: 18%;
 }
 
+/** 
+ * Makes the semester name dropdowns color, position, the size and what layer it is in 
+ */
 .semName {
     top: 40px;
     left: 3%;
@@ -229,6 +291,9 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
+/** 
+ * Makes the looks for the addCourse, addSem, and the deleteSem button 
+ */
 .addCourseBtn, .addSemBtn, .deleteSemesterBtn {
     width: 200px;
     height: 50px;
@@ -244,6 +309,9 @@ body {
     box-sizing: border-box;
 }
 
+/** 
+ * Makes the extra looks for the deleteSem button 
+ */
 .deleteSemesterBtn {
     color: #006298;
     background-color: #003b5b00;
@@ -256,15 +324,25 @@ body {
     transition: color 0.5s, border-color 0.5s;
 }
 
+/** 
+ * When hovering over the delete semester button it will turn red 
+ */
 .deleteSemesterBtn:hover {
     color: red;
     border-color: red;
 }
 
+/** 
+ * Makes the position for the addCourse button 
+ */
 .addCourseBtn {
     left: 10%;
     bottom: 20px;
 }
+
+/** 
+ * Makes the position for the addSem button 
+ */
 .addSemBtn {
     left: 26%;
     width: 250px;
@@ -273,10 +351,16 @@ body {
     bottom: -500px;
 }
 
+/** 
+ * Make the movement of the sembutton when a new semester is created through an animation 
+ */
 .semBtnMove {
     animation: semBtnMove 1s ease-in-out forwards;
 }
 
+/** 
+ * Make the semButron with keyframes 
+ */
 @keyframes semBtnMove {
     0% {
         transform: translateY(-390px);
@@ -286,6 +370,9 @@ body {
     }
 }
 
+/** 
+ * Make looks for the save button by changing the color and the aesthetics 
+ */
 .saveBtn {
     border: 2px solid #006298;
     width: 250px;
@@ -301,19 +388,27 @@ body {
     font-weight: 600;
 }
 
+/** 
+ * Make the save button change colors when hovered over 
+ */
 .saveBtn:hover {
     color: #004970;
     border: 2px solid #004970;
 }
 
+/** 
+ * Make the sembutton change color when hovered over 
+ */
 .addSemBtn:hover {
     border-style: solid;
     border-width: 15px;
     border-color: #003b5b;
     background-color: #003b5b;
-    
 }
 
+/** 
+ * Make the addcourse button change color when hovered over 
+ */
 .addCourseBtn:hover {
     border-style: solid;
     border-width: 10px;
@@ -321,6 +416,9 @@ body {
     background-color: #003b5b;
 }
 
+/** 
+ * Make the position for the input container 
+ */
 .inputContainer {
     position: relative;
     box-sizing:border-box;
@@ -328,34 +426,46 @@ body {
     width:100%;
 }
 
+/** 
+ * Positions the word grades for be above the grades dropdown 
+ */
 .grades {
     position: absolute;
     width: 100px;
     left: 59%;
     line-height:50px;
-    
 }
 
-.types {
+/** 
+ * Positions the word types for be above the type dropdown 
+ */
+ .types {
     position: absolute;
     width: 150px;
     right: 10%;
     line-height:50px;
 }
 
+/** 
+ * Positions the course names over the course input 
+ */
 .courseNames {
     position: absolute;
     left: 3%;
     width: 50%;
     line-height:50px;
-    
 }
 
+/** 
+ * The course name input changes color when selected 
+ */
 .courseNames input::placeholder {
     color: #006298;
 }
 
-
+/** 
+*makes the width, height, color, and looks for grades, types, coursenames and delete select 
+*/
 .grades select, .types select, .courseNames input, .deletes button {
     position: relative;
     width: 100%;
@@ -370,10 +480,16 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
+/** 
+*changed the padding of the course name input
+*/
 .courseNames input {
     padding-left: 10px;
 }
 
+/**
+*make the width of the delete button and the space between the deltes
+*/
 .deletes {
     position: absolute;
     width: 40px;
@@ -381,18 +497,26 @@ body {
     line-height:50px;
 }
 
+/**
+*makes the looks for the delte button 
+*/
 .deletes button {
     border-radius: 30px;
     font-size: 20px;
     transition: color 0.5s, border-color 0.5s;
 }
 
+/**
+*when hovering over the delete button it will change color
+*/
 .deletes button:hover {
-	color:red;	
+	color:red;
 	border-color: red;
-	
 }
 
+/**
+*makes the position and the result for U and UW and the sem Grades 
+*/
 .results, .results2, .semesterGrades {
     width: calc(30% - 30px);
     height: 100px;
@@ -407,22 +531,34 @@ body {
     top: 60%;
 }
 
+/**
+*adjust position for W 
+*/
 .results2 {
     top: 140%;
 }
 
+/** 
+*adjust position foe the sem grades 
+*/
 .semesterGrades {
     top: 220%;
     height:max-content;
     display: block;
 }
 
+/**
+*changes the position of all the h2 in the sem grade div
+*/
 .semesterGrades h2 {
     left: 20px;
     position: relative;
     width: 100%;
 }
 
+/**
+*positions the name div in the correct spot
+*/
 .name {
     position: absolute;
     left: 20%;
@@ -431,7 +567,9 @@ body {
     font-weight:600;
 
 }
-
+/**
+*positions the W and UW GPA 
+*/
 .weightedGpa, .unweightedGpa {
     position: absolute;
     left: 20px;
@@ -441,6 +579,9 @@ body {
     font-family: 'Fira Sans', sans-serif;
 }
 
+/**
+*makes the popUPs positions color and aesthetics
+*/
 .popUp {
     position: fixed;
     top: 50px;
@@ -456,6 +597,9 @@ body {
     display: flex;
 }
 
+/**
+*makes the message to be positioned in the correct spot and aligns the text in the mesasge 
+*/
 .message {
     top: -10px;
     position: absolute;
@@ -465,6 +609,9 @@ body {
 }
 
 
+/**
+*uses keyframe to make a fade 
+*/
 @keyframes fade {
     0% {
         opacity: 100%;
