@@ -1,42 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
     <title>Login Page</title>
+    <!-- External CSS -->
     <link rel="stylesheet" href="http://localhost:8082/resources?login.css">
 </head>
 <body>
+    <!-- Pop-up message container -->
 	<div class="popUp" id="popUp">
+        <!-- Pop-up message -->
         <h2 class="message">hi</h2>
     </div>
+    <!-- Background overlay -->
     <div class="background"></div>
+    <!-- Main container -->
     <div class="container">
+        <!-- Title and logo -->
         <div class="titleWrap">
-        <img src="http://localhost:8082/resources?logoinverted.png">
+            <!-- Logo -->
+            <img src="http://localhost:8082/resources?logoinverted.png">
+            <!-- Title -->
             <h1>GradeGear</h1>
+            <!-- Login wrapper -->
             <div class="wrapper"> 
+                <!-- Login form -->
                 <div class="login">
+                    <!-- Login heading -->
                     <h2>Login</h2>
-                        <form id="login-form">
+                    <!-- Login form fields -->
+                    <form id="login-form">
+                        <!-- Username field -->
                         <div class="input-box">
                             <h3>Username</h3>
                             <input type="text" id="username" name="username" required placeholder="Enter Username">
-
                         </div>
+                        <!-- Password field -->
                         <div class="input-box">
                             <h3>Password</h3>
                             <input type="password" id="password" name="password" required placeholder="Enter Password">
-
                         </div>
+                        <!-- Submit button -->
                         <button type="submit" class="btn">Submit</button>
+                        <!-- Login/register link -->
                         <div class="login-register">
-                            <p>Dont have an account?<a href="http://localhost:8082/resources?register.html" class="register-link"> Register</a></p>
+                            <p>Don't have an account? <a href="http://localhost:8082/resources?register.html" class="register-link">Register</a></p>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-<script src="http://localhost:8082/resources?login.js"></script>
+    </div>
+    <!-- External JavaScript -->
+    <script src="http://localhost:8082/resources?login.js"></script>
 </body>
 </html>
