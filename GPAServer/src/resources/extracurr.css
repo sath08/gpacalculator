@@ -1,34 +1,36 @@
-
+/* Global styles */
 body {
     font-family: 'Fira Sans', sans-serif;
 }
 
+/* Container for instruction buttons */
 .instructionsBtnContainer {
     align-items: center;
     position:relative;
     display: flex;
     justify-content: center;
     padding: 10px;
-    top: 100px;
+    top: 100px; /* Adjust top position */
 }
 
+/* Style for line separator */
 .styleLine1 {
     position: absolute;
     width: 94%;
-    top: 60px;
-    border: 1px solid #006298
+    top: 60px; /* Adjust top position */
+    border: 1px solid #006298;
 }
 
-
+/* Subtitle style */
 .subtitle {
     position:absolute;
     color: #006298;
-    top: -30px;
+    top: -30px; /* Adjust top position */
     font-size: 50px;
     left: 20px;
 }
 
-
+/* Header styles */
 .header {
     background: #006298;
     height: 120px;
@@ -39,20 +41,17 @@ body {
     color: white;
     z-index: 2;
     left: 230px;
-    
-    
     width:100%;
-    
 }
 
+/* Header text styles */
 .header h1 {
     position: absolute;
     top:-9px;
     left: 30px;
 }
 
-
-
+/* Dropdown menu styles */
 .dropdown {
     z-index: 2;
     position: fixed;
@@ -61,9 +60,9 @@ body {
     top:0;
     left:0;
     background-color: #004e78;
-    
 }
 
+/* Dropdown button styles */
 .dropbtn {
     background-color: rgba(111, 176, 216, 0);
     color: white;
@@ -73,17 +72,20 @@ body {
     cursor:pointer;
 }
 
+/* Separator line style */
 .line {
     border:1px solid #dceff7;
-
 }
-  
+
+/* Menu content styles */
 .menuContent {
     top:0px;
     position: absolute;
     width: 100%;
     height: 100%;
 }
+
+/* Menu link styles */
 .menuContent a {
     color: white;
     padding: 10% 5%;
@@ -95,6 +97,7 @@ body {
     transition: background-color 0.5s;
 }
 
+/* Logout link styles */
 .logout {
     color: white;
     padding: 10% 5%;
@@ -109,6 +112,7 @@ body {
     width: calc(100% - 23px);
 }
 
+/* User section styles */
 .user {
     color: white;
     display: flex;
@@ -121,38 +125,42 @@ body {
     justify-content: center;
 }
 
+/* User image styles */
 .user img {
     height: 100px;
-    
-    
     position: absolute;
 }
-  
-.menuContent a:hover {background-color: #111538}
-  
+
+/* Hover effect for menu links */
+.menuContent a:hover {
+    background-color: #111538;
+}
+
+/* Show class */
 .show {
     display: block;
 }
 
+/* Calculator container styles */
 .calcContainer {
     width: calc(100% - 280px);
     left: 250px;
     position: relative;
-    
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Tables styles */
 .tables {
     display: flex;
     position: relative;
     height: 160px;
     width: 1550px;
     top: 140px;
-    /*border: 3px solid black;*/
 }
 
+/* Subcalculator styles */
 .subCalc {
     display: flex;
     position: absolute;
@@ -169,6 +177,7 @@ body {
     justify-content: center;
 }
 
+/* Calculator styles */
 .calculator {
     border-radius: 30px;
     border-style: solid;
@@ -184,6 +193,7 @@ body {
     animation: addSemester 1s ease-in-out forwards;
 }
 
+/* Keyframe animation for adding semester */
 @keyframes addSemester {
     0% {
         top: 30px;
@@ -193,13 +203,15 @@ body {
     }
 }
 
+/* Line style */
 .styleLine1 {
     position: absolute;
     width: 94%;
     top: 60px;
-    border: 1px solid #006298
+    border: 1px solid #006298;
 }
 
+/* Calculator paragraph styles */
 .calculator p {
     position: absolute;
     top: -16px;
@@ -207,6 +219,7 @@ body {
     color: #006298;
 }
 
+/* Semester name styles */
 .semName {
     top: -20px;
     left: 1%;
@@ -222,6 +235,7 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
+/* Button styles for adding course and semester */
 .addCourseBtn, .addSemBtn {
     width: 200px;
     height: 50px;
@@ -235,10 +249,13 @@ body {
     background: #006298;
 }
 
+/* Add course button styles */
 .addCourseBtn {
     left: 10%;
     bottom: 20px;
 }
+
+/* Add semester button styles */
 .addSemBtn {
     left: 26%;
     width: 250px;
@@ -246,9 +263,9 @@ body {
     font-size: 30px;
     bottom: -500px;
     animation: semBtnMove 1s ease-in-out forwards;
-
 }
 
+/* Keyframe animation for moving semester button */
 @keyframes semBtnMove {
     0% {
         transform: translateY(-400px);
@@ -258,6 +275,7 @@ body {
     }
 }
 
+/* Save button styles */
 .saveBtn {
     border: 2px solid #006298;
     width: 280px;
@@ -273,14 +291,18 @@ body {
     font-weight: 600;
 }
 
+/* Hover effect for save button */
 .saveBtn:hover {
     color: #004970;
     border: 2px solid #004970;
 }
 
-.addCourseBtn:hover, .calculateBtn:hover, .addSemBtn:hover {background: #004970;
+/* Hover effect for buttons */
+.addCourseBtn:hover, .calculateBtn:hover, .addSemBtn:hover {
+    background: #004970;
 }
 
+/* Input container styles */
 .inputContainer {
     position: relative;
     box-sizing:border-box;
@@ -288,22 +310,23 @@ body {
     width:100%;
 }
 
+/* Current states styles */
 .curStates {
     position: absolute;
     width: 22%;
     left: 28%;
     line-height:50px;
-    
 }
 
+/* Goal states styles */
 .goalStates {
     position: absolute;
-
     left: 51%;
     width: 22%;
     line-height:50px;
 }
 
+/* Course names styles */
 .courseNames {
     position: absolute;
     left: 3%;
@@ -311,6 +334,7 @@ body {
     line-height:50px;
 }
 
+/* Progresses styles */
 .progresses {
     position: absolute;
     left: 74%;
@@ -318,29 +342,33 @@ body {
     line-height: 50px;
 }
 
+/* Course styles */
 .course {
     left: 3%;
 }
 
+/* Goal state styles */
 .goalState {
     left: 51%;
 }
 
+/* Current state styles */
 .curState {
     left: 28%;
 }
 
+/* Progress styles */
 .progress {
     left: 74%;
 }
 
+/* Input styles for goal states, current states, course names, and progresses */
 .goalStates input, .curStates input, .courseNames input, .progresses select {
     position: relative;
     width: 100%;
     height: 40px;
     font-size: 20px;
     color: #006298;
-    
     border: 1px solid #006298;
     padding: 2px;
     box-sizing: border-box;
@@ -348,12 +376,17 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
+/* Additional styles for course names input */
 .courseNames input {
     padding-left: 10px;
 }
 
-.deletes button:hover {color:red}
+/* Hover effect for delete buttons */
+.deletes button:hover {
+    color:red;
+}
 
+/* GPA container styles */
 .gpaContainer {
     width: calc(30% - 30px);
     border-radius: 25px;
@@ -368,48 +401,50 @@ body {
     display: block;
 }
 
+/* Statuses styles */
 .statuses {
     width: 40%;
     right: 20px;
     top: 0;
     position: absolute; 
     height: max-content;
-    
     display: block;
 }
 
+/* Title styles for statuses */
 .statuses h2 {
     position: relative;
     text-align: right;
 }
 
-
+/* Groups styles */
 .groups h2 {
     left: 20px;
     position: relative;
     width: 100%;
 }
 
-
-
+/* Name styles */
 .name {
     position: absolute;
     left: 20%;
     bottom: 70%;
     font-size: 30px;
     font-weight:600;
-
 }
 
+/* Weighted GPA and Unweighted GPA styles */
 .weightedGpa, .unweightedGpa {
     position: absolute;
     left: 20px;
 }
 
+/* Pre styles for groups and statuses */
 .groups pre, .statuses pre {
     font-family: 'Fira Sans', sans-serif;
 }
 
+/* Pop-up styles */
 .popUp {
     position: fixed;
     top: 50px;
@@ -425,6 +460,7 @@ body {
     display: flex;
 }
 
+/* Message styles */
 .message {
     top: -10px;
     position: absolute;
@@ -432,6 +468,8 @@ body {
     text-align: center;
     width: 100%;
 }
+
+/* Keyframe animation for fading */
 @keyframes fade {
     0% {
         opacity: 100%;
