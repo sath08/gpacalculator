@@ -1,15 +1,23 @@
+<!-- Sets up html page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    	<!-- sets the character set -->
     <meta charset="UTF-8">
+	<!-- Sets the view scale -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Sets the page title -->
     <title>GPA Calculator</title>
+	<!-- Gets the style code -->
     <link rel="stylesheet" href="http://localhost:8082/resources?instructions.css"> 
+	<!-- gets the font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
+	<!-- Sets up the main content of the page -->
 <body>
+	<!-- Creates the chatbot -->
 	<script type="text/javascript">
 		var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 		(function(){
@@ -21,28 +29,35 @@
 		s0.parentNode.insertBefore(s1,s0);
 		})();
 	</script>
+	<!-- Creates the header/title -->
     <div class="header">
         <h1 class="title">GradeGear</h1>
     </div>
-    
+    <!-- Creates a div for the dropdown, separating the elements inside  -->
     <div class="dropdown">
-        
+        <!-- Creates a div for the menu content -->
         <div class="menuContent" id="menu">
+		<!-- Contains the user image/logo -->
             <div class="user">
                 <img src="http://localhost:8082/resources?logo.png">
             </div>
+		<!-- Creates a style line -->
             <div class="line"></div>
+		<!-- Provides links to the other pages of the webiste -->
             <a href="http://localhost:8082/resources?gpacalc.html">GPA Calculator</a>
             <a href="http://localhost:8082/resources?transcript.html">4 Year Plan</a>
             <a href="http://localhost:8082/resources?extracurr.html">Extracurriculars</a>
             <a href="http://localhost:8082/resources?gparesources.html">Resources</a>
             <a href="http://localhost:8082/resources?instructions.html">Instructions</a>
         </div>
+	    <!-- provides a logout link -->
         <a href="http://localhost:8082/resources?login.html" class="logout">Logout</a>
     </div>
+	<!-- Creates a div to hold all the instructions -->
     <div class="instructions">
+	    <!-- Prints out all the instructions information -->
         <h1>Instructions</h1>
-
+	    
         <h2>Overview</h2>
         <p>This is a website that will calculate your GPA (Grade Point Average) for you. All you need to do is input some information and we will do the rest! For more in-depth instructions, follow steps 1 through 4 to learn how to calculate your GPA.</p>
         <h2 class="title">1. Choose Your Semester</h2>

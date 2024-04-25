@@ -1,15 +1,22 @@
+<!-- Sets up entire webpage -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Sets character set -->
     <meta charset="UTF-8">
+	<!-- Sets viewing size -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Sets web page title -->
     <title>GPA Calculator</title>
+	<!-- Sets style -->
     <link rel="stylesheet" href="http://localhost:8082/resources?gpacalc.css"> 
+	<!-- Sets the font to fira sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+	<!-- Sets up the chatbot -->
 	<script type="text/javascript">
 		var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 		(function(){
@@ -21,22 +28,21 @@
 		s0.parentNode.insertBefore(s1,s0);
 		})();
 	</script>
+	<!-- Creates the title -->
     <div class="header">
-        <h1 class="title">GradeGear</h1>
-        <div class="links">
-            
-
-        </div>
-        
+        <h1 class="title">GradeGear</h1>        
     </div>
-    
+    <!-- Creates a div for the dropdown -->
     <div class="dropdown">
-        
+        <!-- Creates a div for the menu content -->
         <div class="menuContent" id="menu">
+		<!-- Adds the logo image -->
             <div class="user">
                 <img src="http://localhost:8082/resources?logo.png">
             </div>
+		<!-- Creates a style line -->
             <div class="line"></div>
+		<!-- Links to other webpages -->
             <a href="http://localhost:8082/resources?gpacalc.html">GPA Calculator</a>
             <a href="http://localhost:8082/resources?transcript.html">4 Year Plan</a>
             <a href="http://localhost:8082/resources?extracurr.html">Extracurriculars</a>
@@ -45,14 +51,19 @@
         </div>
         <a href="http://localhost:8082/resources?login.html" class="logout">Logout</a>
     </div>
+	<!-- Creates the popup that will appear when a message needs to be sent to the user -->
     <div class="popUp" id="popUp">
         <h2 class="message">hi</h2>
     </div>
+	<!-- Creates a div to contain all the  calculators and output boxes -->
     <div class="calcContainer" id="calcContainer">
+	    <!-- Creates a div to  contain all the tables in the calculators -->
         <div class="tables" id="tables">
+		<!-- Sets the subtitle -->
             <h1 class="subtitle">GPA Calculator</h1>
-            
+            <!-- Creates a template for the calculator ui -->
             <div class="calculator" id="calculator">
+		    <!-- Creates a dropdown for the semester name -->
                 <select class="semName" onchange="semNameChange()">
                     <option>Choose Semester</option>
                     <option>Freshman Semester 1</option>
@@ -64,24 +75,32 @@
                     <option>Senior Semester 1</option>
                     <option>Senior Semester 2</option>
                 </select>
+		    <!-- Creates the delete semester button -->
                 <button class="deleteSemesterBtn" onclick="deleteSemester(0)">X</button>
+		    <!-- Creates a subsection of the  calculator -->
                 <div class="subCalc">
+			<!-- Creates the subtitles for each section -->
                     <p class="course">Course</p>
                     <p class="type">Type</p>
                     <p class="grade">Grade</p>
                     <div class="styleLine1"></div>
+			<!-- Creates a container for all the user input elements -->
                     <div class="inputContainer">
                         <div id="courseNames" class="courseNames"></div>
                         <div id="grades" class="grades"></div>
                         <div id="types" class="types"></div>
                         <div id="deletes" class="deletes"></div>  
                     </div>
+			<!-- Creates the add course button -->
                     <button class="addCourseBtn" onclick="addCourse(0)">Add Course</button>
                     
                 </div>
             </div>
+		<!-- Creates the save button -->
             <button class="saveBtn" onclick="save()">Save To 4 Year Plan</button>
+		<!-- Creates the add semester button -->
             <button class="addSemBtn" id="addSemBtn" onclick="addSemester()">Add Semester</button>
+		<!-- Creates a div to contain the gpa results -->
             <div class="gpaContainer">
                 <div class="results" id="results">
                     <h2 class="weightedGpa" id="weightedGpa">Cumulative Weighted GPA: </h2>
