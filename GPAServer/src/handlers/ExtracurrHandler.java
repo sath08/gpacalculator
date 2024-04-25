@@ -39,16 +39,15 @@ public class ExtracurrHandler implements HttpHandler {
         }
     }
 	/**
-	 * Implementation for handling GET for Extracurricular. 
-	 * Retrieves the saved extracurricular for the user and
-	 * returns the corresponding data in JSON format
+	 * Implementation for handling GET for Extracurricular. Retrieves the saved extracurricular 
+	 * for the user and returns the corresponding data in JSON format.
+	 * 
 	 * @param exchange - Http Exchange Object
 	 * @throws IOException, ClassNotFoundException 
 	 */
 	private void handleGetRequest(HttpExchange exchange) throws IOException, ClassNotFoundException {
 		String identifier = Utils.readIdentifier();
 		Extracurr extracurr = retrieveFromDisk("C:\\Users\\sathk\\OneDrive\\Desktop\\gpacalculator\\GPAServer\\data\\Extracurricular_" + identifier + ".csv");
-		
 		Gson gson = new Gson();
 		String extracurrAsJson = gson.toJson(extracurr);
 		System.out.println(extracurrAsJson);

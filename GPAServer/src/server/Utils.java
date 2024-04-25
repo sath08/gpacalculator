@@ -8,10 +8,11 @@ public class Utils {
 
     /**
      * Reads the identifier from disk
-     * @param path
-     * @return
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * 
+     * @param 	path
+     * @return	none
+     * @throws 	IOException
+     * @throws 	ClassNotFoundException
      */
     public static String readIdentifier() throws IOException, ClassNotFoundException{
         FileInputStream fileIn = new FileInputStream("user_identifier");
