@@ -1,33 +1,36 @@
+/* Global styles */
 body {
     font-family: 'Fira Sans', sans-serif;
 }
 
+/* Container for instruction buttons */
 .instructionsBtnContainer {
     align-items: center;
     position:relative;
     display: flex;
     justify-content: center;
     padding: 10px;
-    top: 100px;
+    top: 100px; /* Adjust top position */
 }
 
+/* Style for line separator */
 .styleLine1 {
     position: absolute;
     width: 94%;
-    top: 60px;
-    border: 1px solid #006298
+    top: 60px; /* Adjust top position */
+    border: 1px solid #006298;
 }
 
-
+/* Subtitle style */
 .subtitle {
     position:absolute;
     color: #006298;
-    top: -30px;
+    top: -30px; /* Adjust top position */
     font-size: 50px;
     left: 20px;
 }
 
-
+/* Header styles */
 .header {
     background: #006298;
     height: 120px;
@@ -38,20 +41,17 @@ body {
     color: white;
     z-index: 2;
     left: 230px;
-    
-    
     width:100%;
-    
 }
 
+/* Header text styles */
 .header h1 {
     position: absolute;
     top:-9px;
     left: 30px;
 }
 
-
-
+/* Dropdown menu styles */
 .dropdown {
     z-index: 2;
     position: fixed;
@@ -60,9 +60,9 @@ body {
     top:0;
     left:0;
     background-color: #004e78;
-    
 }
 
+/* Dropdown button styles */
 .dropbtn {
     background-color: rgba(111, 176, 216, 0);
     color: white;
@@ -72,17 +72,20 @@ body {
     cursor:pointer;
 }
 
+/* Separator line style */
 .line {
     border:1px solid #dceff7;
-
 }
-  
+
+/* Menu content styles */
 .menuContent {
     top:0px;
     position: absolute;
     width: 100%;
     height: 100%;
 }
+
+/* Menu link styles */
 .menuContent a {
     color: white;
     padding: 10% 5%;
@@ -94,6 +97,7 @@ body {
     transition: background-color 0.5s;
 }
 
+/* Logout link styles */
 .logout {
     color: white;
     padding: 10% 5%;
@@ -108,6 +112,7 @@ body {
     width: calc(100% - 23px);
 }
 
+/* User section styles */
 .user {
     color: white;
     display: flex;
@@ -120,45 +125,53 @@ body {
     justify-content: center;
 }
 
+/* User image styles */
 .user img {
     height: 100px;
-    
-    
     position: absolute;
 }
-  
-.menuContent a:hover {background-color: #111538}
 
+/* Hover effect for menu links */
+.menuContent a:hover {
+    background-color: #111538;
+}
+
+/* Container for AP and General Resources */
 .apResources, .genResources {
-	position: absolute;
-	left: calc(230px + 3%);
-	width: calc(35%);
-	background-color: #dceff7;
-	top: 220px;
-	border-radius: 20px;
-	padding-right: 30px;
+    position: absolute;
+    left: calc(230px + 3%);
+    width: calc(35%);
+    background-color: #dceff7;
+    top: 220px;
+    border-radius: 20px;
+    padding-right: 30px;
 }
 
+/* Positioning for General Resources */
 .genResources {
-	left: calc(44% + 230px);
+    left: calc(44% + 230px);
 }
+
+/* Title styles for AP and General Resources */
 .apResources h1, .genResources h1 {
-	top: -90px;
-	font-size: 40px;
-	position: absolute;
-	color: #004e78;
+    top: -90px;
+    font-size: 40px;
+    position: absolute;
+    color: #004e78;
 }
 
+/* Subtitle styles for AP and General Resources */
 .apResources h2, .genResources h2 {
-	left: 20px;
-	font-size: 30px;
-	position: relative;
-	color: #004e78;
+    left: 20px;
+    font-size: 30px;
+    position: relative;
+    color: #004e78;
 }
 
+/* Paragraph styles for AP and General Resources */
 .apResources p, .genResources p {
-	left: 20px;
-	position: relative;
-	color: #004e78;
-	font-size: 25px;
+    left: 20px;
+    position: relative;
+    color: #004e78;
+    font-size: 25px;
 }
