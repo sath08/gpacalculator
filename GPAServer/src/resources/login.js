@@ -1,6 +1,7 @@
+// Remove the 'popUp' class from the element with the id 'popUp'
 document.getElementById("popUp").classList.remove("popUp");
 
-
+// Add an event listener for the form submission
 document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -29,22 +30,24 @@ document.getElementById('login-form').addEventListener('submit', function(event)
                 window.location.href = 'http://localhost:8082/resources?gpacalc.html';
             } else {
                 console.error('Login failed');
-                // Handle login failure
-                let popUp = document.getElementById("popUp")
-		        let message = popUp.querySelector(".message");
-		
-		        message.textContent = "Credentials Do Not Match";
-		        popUp.appendChild(message);
-		        popUp.style.opacity = 100;
-		
-		        popUp.classList.remove("popUp");
-		
-		        // Force a reflow
-		        void popUp.offsetWidth;
-		
-		        // Reapply the class to restart the animation
-		        popUp.classList.add("popUp");
-		        popUp.style.opacity = 0;
+                // Handle login failure by displaying a pop-up message
+                let popUp = document.getElementById("popUp");
+                let message = popUp.querySelector(".message");
+                
+                // Set the message content
+                message.textContent = "Credentials Do Not Match";
+                popUp.appendChild(message);
+                popUp.style.opacity = 100;
+                
+                // Remove and reapply the 'popUp' class to restart the animation
+                popUp.classList.remove("popUp");
+                
+                // Force a reflow to restart the animation
+                void popUp.offsetWidth;
+                
+                // Reapply the 'popUp' class
+                popUp.classList.add("popUp");
+                popUp.style.opacity = 0;
             }
         })
         .catch(error => {
@@ -52,12 +55,12 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         });
 });
 
-
+// Get elements for toggling between register and login forms
 const wrapper = document.querySelector('.wrapper');
 const registerLink = document.querySelector('.login-link');
 const loginLink = document.querySelector('.register-link'); 
 
-
+// Add event listener for toggling between register and login forms
 registerLink.addEventListener("click", () => {
     console.log('Register link clicked'); // Check if this log appears in the console
     wrapper.classList.remove('active');
