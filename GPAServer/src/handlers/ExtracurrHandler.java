@@ -18,8 +18,18 @@ import domain.Extracurr;
 import server.Utils;
 import domain.Extracurr;
 
+/**
+ * Handler for /extracurr context responsible for managing Extracurriculars. 
+ * GET & POST methods are supported. 
+ * 
+ */
 public class ExtracurrHandler implements HttpHandler {
 
+/**
+ * Handler for /extracurr context responsible for managing Extracurriculars. 
+ * GET & POST methods are supported. 
+ * 
+ */
 	@Override
 	public void handle(HttpExchange exchange) throws IOException {
         if (exchange.getRequestMethod().equals("GET")) {
