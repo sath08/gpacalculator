@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 /**
- * GPACalculatorServer is the HTTP server that is used to host our site, and in the main
- * we have each one of the url paths and the associated handlers.
+ * GPACalculatorServer is the HTTP server that is used to host our site. It listens to the HTTP requests
+ * and routes to the appropriate handlers for processing or serving resources
  */
 public class GPACalculatorServer {
 	/**
-	 * GPACalculatorServer is the HTTP server that is used to host our site, and in the main
-	 * we have each one of the url paths and the associated handlers.
+	 * GPACalculatorServer is started on port 8082 and contexts are created 
+	 * and Handlers are instantiated for each of them
 	 * 
 	 * @param	path
          * @return	none
