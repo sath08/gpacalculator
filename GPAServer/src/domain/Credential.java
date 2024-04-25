@@ -3,7 +3,7 @@ package domain;
 import java.io.Serializable;
 
 /**
- * The Credential class is utilized for storage as well as validation of username and password
+ * Domain object for storing username and password
  * parameters entered.
  */
 public class Credential implements Serializable {
@@ -12,9 +12,7 @@ public class Credential implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Initialize fields to help for organization of information from json string for easy storage
-	 * of information. Helps with the reading and verification of fields/pieces of information 
-	 * required.
+	 * Attributes of the Credential Object
 	 */	
 	private String username;
 	private String password;
