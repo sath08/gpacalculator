@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This class helps with the ease in organization of student record information stored in a set of 
- * nested arrays, as opposed to the json string sent to the backend. This helps with display of 
- * information on the client side and readability.
+ * Domain object for StudentRecord. This class helps with the ease in organization of 
+ * student record information stored in a set of nested arrays, as opposed to the json 
+ * string sent to the backend. This helps with display of information on the client 
+ * side and readability.
  */
 public class StudentRecord implements Serializable {
 	
@@ -23,7 +24,7 @@ public class StudentRecord implements Serializable {
 	private String identifier;
 	private Double cumulative_weighted_gpa;
 	private Double cumulative_unweighted_gpa;
-    private List<Object[]> semesters; 
+   	private List<Object[]> semesters; 
 	private HashMap<String, Object[]> semesterInfo;
 	public StudentRecord() {
 		semesterInfo = new HashMap<String, Object[]>();
@@ -154,30 +155,30 @@ public class StudentRecord implements Serializable {
 		buffer.append("Identifier," + identifier + "\n");
 		buffer.append("Cumulative Weighted GPA," + cumulative_weighted_gpa + "\n");
 		buffer.append("Cumulative Unweighted GPA," + cumulative_unweighted_gpa + "\n");
-        for (Map.Entry<String,Object[]> entry: semesterInfo.entrySet()) { 
-        	if (entry.getValue() != null) {
-	        	for (int i = 0; i < entry.getValue().length; i++) { // Ignore the Semester Name at Index 0
-	        		if (i == 0) {
-	        			buffer.append("\n\n" + entry.getValue()[i]);
-	        		} else if (i == 1) {
-	        			buffer.append("\n\nUnweighted GPA: " + entry.getValue()[i] + "\n");
-	        		} else if (i == 2) {
-	        			buffer.append("Weighted GPA: " + entry.getValue()[i] + "\n\n");
-	        		} else {
-	        			ArrayList<Object> courses = (ArrayList<Object>) entry.getValue()[i];
-	        			int counter = 1;
-	        			for (Object course : courses) {
-	        				buffer.append(course + ",");
-	        				if (counter % 3 == 0) {
-	        					counter = 1;
-	        					buffer.append("\n");
-        					}
-	        				counter++;
-        				}
-	        		}
-	        	}
-        	}	
-        }
-        return buffer.toString();
+	        for (Map.Entry<String,Object[]> entry: semesterInfo.entrySet()) { 
+	        	if (entry.getValue() != null) {
+		        	for (int i = 0; i < entry.getValue().length; i++) { // Ignore the Semester Name at Index 0
+		        		if (i == 0) {
+		        			buffer.append("\n\n" + entry.getValue()[i]);
+		        		} else if (i == 1) {
+		        			buffer.append("\n\nUnweighted GPA: " + entry.getValue()[i] + "\n");
+		        		} else if (i == 2) {
+		        			buffer.append("Weighted GPA: " + entry.getValue()[i] + "\n\n");
+		        		} else {
+		        			ArrayList<Object> courses = (ArrayList<Object>) entry.getValue()[i];
+		        			int counter = 1;
+		        			for (Object course : courses) {
+		        				buffer.append(course + ",");
+		        				if (counter % 3 == 0) {
+		        					counter = 1;
+		        					buffer.append("\n");
+	        					}
+		        				counter++;
+	        				}
+		        		}
+		        	}
+	        	}	
+	        }
+        	return buffer.toString();
 	}
 }
