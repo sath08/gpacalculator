@@ -38,9 +38,16 @@ public class GpaCalculatorHandler implements HttpHandler {
         }
     }
 
-    // handle POST request
+    /**
+     * Implementation for handling POST for StudentRecord. Retrieves the studentrecord 
+     * JSON from the request, converts it to Java Object using GSON and saves the StudentRecord
+     * object to the disk.
+     *
+     * @param exchange - Http Exchange Object
+     * @throws IOException, ClassNotFoundException 
+     */
     private void handlePostRequest(HttpExchange exchange) throws IOException, ClassNotFoundException {
-        String response = "Transcript Sucessfully Saved";
+        String response = "StudentRecord Sucessfully Saved";
         String reqBodyAsString = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
         Gson gson = new Gson(); 
         StudentRecord studentRecord = gson.fromJson(reqBodyAsString, StudentRecord.class);
@@ -53,7 +60,13 @@ public class GpaCalculatorHandler implements HttpHandler {
         os.write(response.getBytes());
         os.close();
     }
-    
+
+    /**
+     * Helper method for writing the specified content to the disk using the identifier in the file name.
+     *
+     * @param exchange - Serializable content, String identifier
+     * @throws IOException
+     */
     private String writeToDisk(Serializable content, String identifier) throws IOException {
     	String fileName = "data/Transcript_" + identifier + ".csv";
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
@@ -63,7 +76,12 @@ public class GpaCalculatorHandler implements HttpHandler {
         objectOutputStream.close();
         return fileName;
     }
-    
+
+    /**
+     * Helper method updating the transcript for the Student Record.
+     *
+     * @param exchange - StudentRecord studentRecord
+     */
     private void updateTranscript(StudentRecord studentRecord) {
     	for (Object[] semester : studentRecord.getSemesters()) {
     		Map<String, Object[]> semesterInfo = studentRecord.getSemesterInfo();
