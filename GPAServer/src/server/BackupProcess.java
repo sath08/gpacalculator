@@ -37,9 +37,8 @@ public class BackupProcess {
 	}
 	
     /**
-     * Helper method for  the specified content to the disk using the identifier in the file name.
+     * Helper method for copying files from source to destination.
      *
-     * @param exchange - Serializable content, String identifier
      * @throws IOException
      */
 	private void backupData() throws IOException {
