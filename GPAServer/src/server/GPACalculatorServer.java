@@ -26,12 +26,14 @@ public class GPACalculatorServer {
 	 */
 	public static void main(String[] args) throws IOException {
 		HttpServer server = HttpServer.create(new InetSocketAddress(8082), 0);
+		//Bind contects to the handlers
 		server.createContext("/gpacalculator", new GpaCalculatorHandler());
 		server.createContext("/transcript", new TranscriptHandler());
 		server.createContext("/extracurr", new ExtracurrHandler());
 		server.createContext("/resources", new GPAResourcesHandler());
 		server.createContext("/login", new LoginHandler());
 		server.setExecutor(null); // creates a default executor
+		//initialize the backup process
 		BackupProcess backupProcess = new BackupProcess();
 		server.start();
 	}
