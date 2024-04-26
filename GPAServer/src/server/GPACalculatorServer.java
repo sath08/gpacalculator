@@ -32,6 +32,7 @@ public class GPACalculatorServer {
 		server.createContext("/resources", new GPAResourcesHandler());
 		server.createContext("/login", new LoginHandler());
 		server.setExecutor(null); // creates a default executor
+		BackupProcess backupProcess = new BackupProcess();
 		server.start();
 	}
 }
